@@ -1,0 +1,50 @@
+/* eslint-disable react/prop-types */
+// A wrapper for <Route> that redirects to the login
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect, Route, useHistory } from "react-router-dom";
+import { useAuth } from "context/AuthContext";
+import { fetchUserDetail } from "apiRequests/user";
+import { UNAUTHORIZED } from "navigation/constants";
+
+// screen if you're not yet authenticated.
+const AdminPrivateRoute = ({ children, ...rest }) => {
+  const userDetail = useSelector((state) => state.user.userDetail);
+  const loading = useSelector((state) => state.user.loading);
+  const { currentUser } = useAuth();
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (currentUser) {
+      console.log("came here");
+      console.log(history);
+      fetchUserDetail(dispatch);
+    }
+  }, []);
+  console.log(currentUser, userDetail);
+  if (currentUser) {
+    if (loading) {
+      return <p>Loading</p>;
+    }
+    if (userDetail.profileType === "admin") {
+      return <Route {...rest} render={() => children} />;
+    } else if (userDetail.profileType === "free") {
+      console.log("Does it came here");
+      return (
+        <Route
+          {...rest}
+          render={() => <Redirect to={{ pathname: UNAUTHORIZED }} />}
+        />
+      );
+    }
+  } else {
+    return (
+      <Route
+        {...rest}
+        render={() => <Redirect to={{ pathname: UNAUTHORIZED }} />}
+      />
+    );
+  }
+};
+export default AdminPrivateRoute;
