@@ -72,11 +72,9 @@ const Article = ({ location }) => {
           <Typography variant="h5" component="h6">
             {article.title}
           </Typography>
-          <Typography variant="subtitle2">
-            {"Date: "}
-            {`${date.getFullYear()}-${
-              date.getMonth() + 1
-            }-${date.getDate()}`}{" "}
+          <Typography variant="subtitle1">{article.title}</Typography>
+          <Typography variant="subtitle2" color="textSecondary">
+            {`${date.toLocaleDateString()}`}
           </Typography>
           <Typography
             paragraph
