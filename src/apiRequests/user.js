@@ -1,0 +1,158 @@
+import axios from "axios";
+import {
+  setAccessToken,
+  setUserDetial,
+  setLoading,
+  deleteUserDetail,
+  setProfilesAndDocuments,
+  setProfiles,
+} from "redux/actions/user";
+import { setUploadedImageURL } from "redux/actions/common";
+import { fetchTokenFromServer, currentUser } from "context/AuthContext";
+import customAxios from "apiRequests/customAxios";
+import { USER_PROFILE_URL, USER_DOCUMENTS_URL } from "apiRequests/constants";
+
+export const fetchUserDetail = async (dispatch) => {
+  const idToken = await fetchTokenFromServer();
+  dispatch(setAccessToken(idToken));
+  localStorage.setItem(
+    "doccords_user",
+    JSON.stringify({ accessToken: idToken })
+  );
+
+  const userDetail = await axios.post(
+    "http://localhost:5001/api/v1/users",
+    {
+      profileName: currentUser().displayName,
+      email: currentUser().email,
+      phone: currentUser().phoneNumber,
+      profilePic: currentUser().photoURL,
+    },
+    {
+      headers: {
+        Authorization: "Bearer " + idToken,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  dispatch(setUserDetial(userDetail.data.user));
+  dispatch(setLoading(false));
+};
+
+export const clearUserDetail = async (dispatch) => {
+  dispatch(deleteUserDetail);
+};
+
+export const createNewProfile =
+  (newProfileData, history) => async (dispatch, getState) => {
+    const {
+      picture,
+      relationshipId,
+      profileName,
+      age,
+      email,
+      phone,
+      gender,
+      knownIssues,
+    } = newProfileData;
+    const createdUser = await customAxios.post(USER_PROFILE_URL, {
+      picture,
+      relationshipId,
+      profileName,
+      age,
+      email,
+      phone,
+      gender,
+      knownIssues,
+    });
+    if (createdUser.data.success) {
+      dispatch(setUploadedImageURL(""));
+      history.push("/profiles");
+    }
+  };
+
+export const fetchAllProfiles = () => async (dispatch, getState) => {
+  const allProfiles = await customAxios.get(USER_PROFILE_URL);
+  if (allProfiles.data.success) {
+    dispatch(setProfiles(allProfiles.data.data));
+  }
+};
+export const fetchAllDocuments = () => async (dispatch, getState) => {
+  const allDocuments = await customAxios.get(USER_DOCUMENTS_URL);
+  if (allDocuments.data.success) {
+    dispatch(setProfiles(allDocuments.data.data));
+  }
+};
+export const fetchAllProfilesAndDocuments =
+  () => async (dispatch, getState) => {
+    const promises = [
+      customAxios.get(USER_PROFILE_URL),
+      customAxios.get(USER_DOCUMENTS_URL),
+    ];
+    const response = await Promise.all(promises);
+    dispatch(
+      setProfilesAndDocuments({
+        profiles: response[0].data.data,
+        documents: response[1].data.data,
+      })
+    );
+  };
+export const deleteAllProfilesAndDocuments =
+  (profiles, documents, history) => async (dispatch, getState) => {
+    const deletedRes = await customAxios.delete(USER_PROFILE_URL, {
+      data: {
+        profiles,
+        documents,
+      },
+    });
+    if (deletedRes.data.success) {
+      dispatch(fetchAllProfilesAndDocuments());
+      history.push("/profiles");
+    }
+  };
+
+export const updateProfile =
+  (newProfileData, history) => async (dispatch, getState) => {
+    const {
+      profileId,
+      picture,
+      relationshipId,
+      profileName,
+      age,
+      email,
+      phone,
+      gender,
+      knownIssues,
+    } = newProfileData;
+    const createdUser = await customAxios.put(
+      `${USER_PROFILE_URL}/${profileId}`,
+      {
+        picture,
+        relationshipId,
+        profileName,
+        age,
+        email,
+        phone,
+        gender,
+        knownIssues,
+      }
+    );
+    if (createdUser.data.success) {
+      dispatch(setUploadedImageURL(""));
+      history.push("/profiles");
+    }
+  };
+
+export const createDoc = (doc) => async (dispatch, getState) => {
+  const { name, link, healthTopicId, profileId } = doc;
+  const data = {
+    name,
+    link,
+    healthTopicId,
+    profileId,
+  };
+  const createdDoc = await customAxios.post(USER_DOCUMENTS_URL, data);
+  if (createdDoc.data.success) {
+    console.log(createdDoc.data.success);
+  }
+};
