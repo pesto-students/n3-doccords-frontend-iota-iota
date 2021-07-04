@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from "react";
 import VerticalGridList from "../../components/verticalGridList";
-import HorizontalGridList from "../../components/HorizontalGridList";
+// import HorizontalGridList from "../../components/HorizontalGridList";
 // import DropDown from "components/DropDown/DropDown";
+import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import MyAutoComplete from "../../components/autoComplete/AutoComplete";
 import { connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setUpSearchBarLocation } from "../../redux/actions/common";
 import { makeStyles } from "@material-ui/core/styles";
+import MyCarousel from "components/shared/carousel/Carousel";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +34,9 @@ const Articles = ({ location, healthTopics, articles, searchedString }) => {
 
   // let relatedArticles = articles;
   const [relatedArticles, setRelatedArticles] = React.useState(articles);
+  const [selectedHealthTopic, setSelectedHealthTopic] = React.useState(
+    location.state
+  );
 
   // Redux functions
   // const selectedHealthTopic = useSelector((state) => state.selectedTopic);
@@ -55,6 +60,7 @@ const Articles = ({ location, healthTopics, articles, searchedString }) => {
       console.log(filteredArticles);
       setRelatedArticles(filteredArticles);
     }
+    setSelectedHealthTopic(selectedItem);
   };
 
   const fileterArticlesBySearch = () => {
@@ -77,26 +83,36 @@ const Articles = ({ location, healthTopics, articles, searchedString }) => {
   // console.log(optionList);
 
   useEffect(() => {
-    dispatch(setUpSearchBarLocation(false));
-    // fileterArticlesBySearch();
-    return () => {};
-  }, []);
-
-  useEffect(() => {
     fileterArticlesBySearch();
     // fileterArticlesBySearch();
     return () => {};
   }, [searchedString]);
 
+  useEffect(() => {
+    dispatch(setUpSearchBarLocation(false));
+    // fileterArticlesBySearch();
+    handleHealthSelection(selectedHealthTopic);
+    return () => {
+      dispatch(setUpSearchBarLocation(null));
+    };
+  }, []);
+
   return (
     <Container className={classes.root}>
-      <h3>Recently added articles</h3>
-      <HorizontalGridList articles={articles} handleClick={handleClickOnHV} />
-      <MyAutoComplete
-        list={healthTopics}
-        handleHealthSelection={handleHealthSelection}
-      />
-      <h2>Health Articles</h2>
+      <h3>All Recently added articles</h3>
+      {/* <HorizontalGridList articles={articles} handleClick={handleClickOnHV} /> */}
+      <Paper>
+        <MyCarousel data={articles} handleClick={handleClickOnHV} />
+      </Paper>
+      <Container style={{ marginTop: "20px" }}>
+        <MyAutoComplete
+          value={selectedHealthTopic}
+          list={healthTopics}
+          handleHealthSelection={handleHealthSelection}
+        />
+      </Container>
+
+      <h2>{`Health Articles / ${selectedHealthTopic.title}`}</h2>
 
       {relatedArticles.length !== 0 ? (
         <VerticalGridList
