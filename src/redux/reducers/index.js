@@ -8,3 +8,5 @@ export const rootReducer = combineReducers({
   user,
   common,
 });
+
+// export default rootReducer;

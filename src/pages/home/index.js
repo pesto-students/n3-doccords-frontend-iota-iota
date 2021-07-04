@@ -48,6 +48,9 @@ const Home = ({
   }, []);
 
   const fileterHealthTopics = () => {
+    if (healthTopics === undefined) {
+      return;
+    }
     return healthTopics.filter((topic) =>
       topic.title.toLowerCase().includes(searchedString.toLowerCase())
     );
@@ -70,7 +73,7 @@ const Home = ({
   };
 
   return (
-    <Container className={classes.root}>
+    <Container className={classes.root} data-test="homePage">
       <h3>Recently added articles</h3>
       <Suspense
         fallback={
