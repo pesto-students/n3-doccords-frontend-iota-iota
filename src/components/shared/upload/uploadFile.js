@@ -60,7 +60,6 @@ const UploadAvatar = () => {
         await setIsLoading(false);
         await setIsSuccess(true);
         dispatch(setUploadedImageURL(res.data.fileLocation));
-        console.log(res);
       }
     } catch (error) {
       setIsLoading(false);
@@ -82,13 +81,7 @@ const UploadAvatar = () => {
       <div className="photo_upload">
         <main style={{ marginTop: "1rem" }}>
           <form
-            onSubmit={(e) => handleFileUpload(e)}
-            // style={{
-            //   display: "flex",
-            //   flexDirection: "column",
-            //   justifyContent: "center",
-            //   alignItems: "center",
-            // }}
+            onSubmit={(e) => handleFileUpload(e)
           >
             <label className="uploader" style={{ width: "15rem" }}>
               <div className="upload-space">
