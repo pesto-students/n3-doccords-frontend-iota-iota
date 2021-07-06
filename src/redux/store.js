@@ -11,7 +11,9 @@ const devTools =
       window.__REDUX_DEVTOOLS_EXTENSION__()
     : (a) => a;
 
+export const middlewares = [thunk, logger];
+
 export const store = createStore(
   rootReducer,
-  compose(applyMiddleware(thunk, logger), devTools)
+  compose(applyMiddleware(...middlewares), devTools)
 );

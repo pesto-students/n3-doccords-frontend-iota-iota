@@ -60,7 +60,14 @@ const UploadAvatar = () => {
         await setIsLoading(false);
         await setIsSuccess(true);
         dispatch(setUploadedImageURL(res.data.fileLocation));
-        console.log(res);
+
+        // Reset to default values after 3 seconds
+        setTimeout(() => {
+          setSelectedFile(null);
+          setPreview(null);
+          setIsSuccess(false);
+          setButtonText("Select your file first");
+        }, 2000);
       }
     } catch (error) {
       setIsLoading(false);

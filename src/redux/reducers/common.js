@@ -4,7 +4,7 @@ const initialState = {
   healthTopics: [],
   articles: [],
   uploadedLink: "",
-  searchLocationIsAtHome: true,
+  searchLocationIsAtHome: null,
   searchedString: "",
 };
 

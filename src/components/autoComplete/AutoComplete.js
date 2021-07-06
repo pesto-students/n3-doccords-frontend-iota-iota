@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 // eslint-disable-next-line react/prop-types
-export default function MyAutoComplete({ list, handleHealthSelection }) {
+export default function MyAutoComplete({ list, handleHealthSelection, value }) {
   return (
     <Autocomplete
       id="combo-box-demo"
@@ -11,6 +11,7 @@ export default function MyAutoComplete({ list, handleHealthSelection }) {
       options={list.map((t) => t)}
       getOptionLabel={(option) => option.title}
       style={{ width: 400 }}
+      value={value}
       onChange={(event, value) =>
         value !== null ? handleHealthSelection(value) : console.log("its null")
       }
