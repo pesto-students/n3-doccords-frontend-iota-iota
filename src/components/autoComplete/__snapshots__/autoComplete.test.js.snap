@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AutoComplete rendering without Error 1`] = `
+<WithStyles(ForwardRef(Autocomplete))
+  getOptionLabel={[Function]}
+  id="combo-box-demo"
+  onChange={[Function]}
+  options={
+    Array [
+      Object {
+        "title": "Item 1",
+      },
+      Object {
+        "title": "Item 2",
+      },
+    ]
+  }
+  renderInput={[Function]}
+  style={
+    Object {
+      "width": 400,
+    }
+  }
+/>
+`;
