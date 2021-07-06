@@ -21,7 +21,9 @@ import {
   fetchAllProfiles,
   createDoc,
   fetchAllProfilesAndDocuments,
+  shareDocument,
 } from "apiRequests/user";
+import { validateEmail } from "Utils/validations";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -66,6 +68,7 @@ const Documents = ({
   createDoc,
   fetchAllProfilesAndDocuments,
   documents,
+  shareDocument,
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -83,9 +86,14 @@ const Documents = ({
       text: "",
     },
   });
+  const [emailError, setEmailError] = useState({
+    status: false,
+    text: "",
+  });
   const [open, setOpen] = useState(false);
   const modalStyle = getModalStyle();
   const [shareData, setSharedata] = useState([]);
+  const [email, setEmail] = useState([]);
   useEffect(() => {
     fetchAllHealthTopics();
     fetchAllProfilesAndDocuments();
@@ -115,6 +123,7 @@ const Documents = ({
       });
       return document;
     });
+    console.log("Documents", documentList);
     setRow(documentList);
   }, [documents]);
 
@@ -144,6 +153,15 @@ const Documents = ({
     }
     if (e.target.name === "profile") {
       setSelectedProfile(e.target.value);
+    }
+    if (e.target.name === "email") {
+      setEmail(e.target.value);
+      if (e.target.value.length > 0) {
+        setEmailError({
+          status: false,
+          text: "",
+        });
+      }
     }
   };
 
@@ -200,7 +218,9 @@ const Documents = ({
       // eslint-disable-next-line react/display-name
       render: (rowData) => {
         if (rowData.sharedList.length > 0) {
-          return <p>{rowData.sharedList.join(",")}</p>;
+          return rowData.sharedList.map((single, index) => (
+            <p key={index}>{single}</p>
+          ));
         }
         return <p>None</p>;
       },
@@ -213,7 +233,29 @@ const Documents = ({
   const handleClose = () => {
     setOpen(false);
   };
-
+  const onShareClick = () => {
+    if (email.length > 0 && validateEmail(email)) {
+      console.log(shareData);
+      const documentIds = shareData.map((document) => document.documentId);
+      shareDocument({ documentIds, email, type: "add" });
+      handleClose();
+      setSharedata([]);
+    } else {
+      if (email.length > 0) {
+        if (!validateEmail(email)) {
+          setEmailError({
+            status: true,
+            text: "please enter valid email",
+          });
+        }
+      } else {
+        setEmailError({
+          status: true,
+          text: "please enter email address",
+        });
+      }
+    }
+  };
   const body = () => {
     if (shareData.length > 0) {
       return (
@@ -225,24 +267,29 @@ const Documents = ({
           </p>
           <div>
             <TextField
+              style={{ marginTop: "1rem" }}
               id="email"
               name="email"
-              label="Outlined"
+              label="Email*"
               variant="outlined"
+              onChange={handleChange}
+              value={email}
+              error={emailError.status}
+              helperText={emailError.text}
             />
           </div>
-          <div>
+          <div style={{ marginTop: "2rem" }}>
             <Button
               variant="contained"
               className={classes.button_yes}
-              // onClick={clickedYes}
+              onClick={onShareClick}
             >
               Share
             </Button>
             <Button
               variant="contained"
               className={classes.button_no}
-              // onClick={handleClose}
+              onClick={handleClose}
             >
               Cancel
             </Button>
@@ -394,6 +441,7 @@ const Documents = ({
               data={row}
               options={{
                 selection: true,
+                actionsColumnIndex: -1,
               }}
               actions={[
                 {
@@ -412,11 +460,19 @@ const Documents = ({
                 },
                 // (rowData) => ({
                 //   icon: tableIcons.Delete,
+                //   position: "row",
                 //   tooltip: "Revoke permission",
                 //   onClick: (event, rowData) =>
                 //     confirm("You want to delete " + rowData.name),
                 //   disabled: 4 < 3,
                 // }),
+                {
+                  icon: tableIcons.SwapHorizIcon,
+                  position: "row",
+                  tooltip: "Revoke permission",
+                  onClick: (event, rowData) =>
+                    confirm("You want to delete " + rowData.name),
+                },
               ]}
             />
             <Modal
@@ -449,6 +505,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchAllProfiles: () => dispatch(fetchAllProfiles()),
   createDoc: (doc) => dispatch(createDoc(doc)),
   fetchAllProfilesAndDocuments: () => dispatch(fetchAllProfilesAndDocuments()),
+  shareDocument: (data) => dispatch(shareDocument(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Documents);

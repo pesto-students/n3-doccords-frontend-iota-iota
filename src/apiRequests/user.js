@@ -156,3 +156,14 @@ export const createDoc = (doc) => async (dispatch, getState) => {
     console.log(createdDoc.data.success);
   }
 };
+
+export const shareDocument = (data) => async (dispatch, getState) => {
+  const { documentIds, email } = data;
+  const shareDoc = await customAxios.post(`${USER_DOCUMENTS_URL}/share`, {
+    documentIds,
+    email,
+  });
+  if (shareDoc.data.success) {
+    dispatch(fetchAllProfilesAndDocuments());
+  }
+};

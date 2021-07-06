@@ -16,6 +16,7 @@ import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import ShareIcon from "@material-ui/icons/Share";
+import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -40,6 +41,9 @@ const tableIcons = {
   ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
   ShareIcon: forwardRef((props, ref) => <ShareIcon {...props} ref={ref} />),
+  SwapHorizIcon: forwardRef((props, ref) => (
+    <SwapHorizIcon {...props} ref={ref} />
+  )),
 };
 
 export default tableIcons;
