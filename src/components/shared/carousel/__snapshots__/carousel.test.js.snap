@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyCarousel rendering without Error 1`] = `
+<div>
+  <Carousel
+    additionalTransfrom={0}
+    arrows={true}
+    autoPlaySpeed={1000}
+    centerMode={false}
+    className=""
+    containerClass="carousel-container"
+    customTransition="all .5"
+    dotListClass="custom-dot-list-style"
+    draggable={true}
+    focusOnSelect={false}
+    infinite={true}
+    itemClass="carousel-item-padding-100-px"
+    keyBoardControl={true}
+    minimumTouchDrag={80}
+    pauseOnHover={true}
+    renderArrowsWhenDisabled={false}
+    renderButtonGroupOutside={false}
+    renderDotsOutside={false}
+    responsive={
+      Object {
+        "desktop": Object {
+          "breakpoint": Object {
+            "max": 3000,
+            "min": 1024,
+          },
+          "items": 4,
+          "slidesToSlide": 1,
+        },
+        "mobile": Object {
+          "breakpoint": Object {
+            "max": 464,
+            "min": 0,
+          },
+          "items": 1,
+          "slidesToSlide": 1,
+        },
+        "tablet": Object {
+          "breakpoint": Object {
+            "max": 1024,
+            "min": 464,
+          },
+          "items": 2,
+          "slidesToSlide": 1,
+        },
+      }
+    }
+    showDots={false}
+    sliderClass=""
+    slidesToSlide={1}
+    ssr={true}
+    swipeable={true}
+    transitionDuration={500}
+  >
+    <WithStyles(ForwardRef(GridListTile))
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "height": "300px",
+          "maxWidth": "500px",
+          "padding": "5px",
+        }
+      }
+    >
+      <img
+        alt="Item 1"
+      />
+      <WithStyles(ForwardRef(GridListTileBar))
+        title="Item 1"
+      />
+    </WithStyles(ForwardRef(GridListTile))>
+    <WithStyles(ForwardRef(GridListTile))
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "height": "300px",
+          "maxWidth": "500px",
+          "padding": "5px",
+        }
+      }
+    >
+      <img
+        alt="Item 2"
+      />
+      <WithStyles(ForwardRef(GridListTileBar))
+        title="Item 2"
+      />
+    </WithStyles(ForwardRef(GridListTile))>
+  </Carousel>
+</div>
+`;
