@@ -18,10 +18,10 @@ export const light = () =>
     palette: {
       type: "light",
       primary: {
-        main: "#4bffa5",
+        main: "#96dad5",
       },
       secondary: {
-        main: "#040f3d",
+        main: "#ff80ab",
       },
     },
   });
