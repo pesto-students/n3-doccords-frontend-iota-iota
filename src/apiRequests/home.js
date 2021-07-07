@@ -1,11 +1,5 @@
 import customAxios from "apiRequests/customAxios";
 import { HEALTH_TOPIC_URL, ARTICLES_URL } from "./apiConstants";
-// import {
-//   // fetchAllHealthTopicsError,
-//   // fetchAllHealthTopicsPending,
-//   fetchAllHealthTopicsSuccess,
-//   // fetchAllArticlesSuccess,
-// } from "../redux/actions/home";
 import { fetchAllArticlesSuccess } from "../redux/actions/articlesAction";
 import { setAllHealthTopics, setAllArticles } from "redux/actions/common";
 

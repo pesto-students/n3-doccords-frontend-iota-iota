@@ -35,7 +35,6 @@ export const createNewHealthTopic =
     const healthTopicsArray = getState().common.healthTopics;
     if (newHealthTopic.data.success) {
       healthTopicsArray.unshift(newHealthTopic.data.data);
-      console.log(healthTopicsArray);
       dispatch(setAllHealthTopics(healthTopicsArray));
       dispatch(setUploadedImageURL(""));
       history.push("/admin/healthTopics");
@@ -69,7 +68,6 @@ export const updateHealthTopic =
 export const createNewArticle =
   (title, description, picture, healthTopicId, history) =>
   async (dispatch, getState) => {
-    console.log(title, description, picture, healthTopicId, history);
     const createdArticle = await customAxios.post(ADMIN_ARTICLES_URL, {
       title,
       description,
