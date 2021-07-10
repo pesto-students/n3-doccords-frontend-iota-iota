@@ -153,7 +153,7 @@ export const createDoc = (doc) => async (dispatch, getState) => {
   };
   const createdDoc = await customAxios.post(USER_DOCUMENTS_URL, data);
   if (createdDoc.data.success) {
-    console.log(createdDoc.data.success);
+    dispatch(fetchAllProfilesAndDocuments());
   }
 };
 

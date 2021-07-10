@@ -12,8 +12,8 @@ import { Provider } from "react-redux";
 import { store } from "redux/store";
 // menubar
 import Nav from "components/shared/menuBar/nav";
-import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert from "@material-ui/lab/Alert";
+// import Snackbar from "@material-ui/core/Snackbar";
+// import MuiAlert from "@material-ui/lab/Alert";
 // styles
 import "./App.css";
 // import { makeStyles } from "@material-ui/core/styles";
@@ -48,9 +48,9 @@ import "./App.css";
 //     ...theme.mixins.toolbar,
 //   },
 // }));
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+// function Alert(props) {
+//   return <MuiAlert elevation={6} variant="filled" {...props} />;
+// }
 
 function App() {
   const [darkState] = useState(false);
@@ -71,9 +71,9 @@ function App() {
             <Router>
               <AuthProvider>
                 <Nav />
-                <Snackbar open={true} autoHideDuration={6000}>
+                {/* <Snackbar open={true} autoHideDuration={6000}>
                   <Alert severity="success">This is a success message!</Alert>
-                </Snackbar>
+                </Snackbar> */}
                 <RouterConfig />
               </AuthProvider>
             </Router>
