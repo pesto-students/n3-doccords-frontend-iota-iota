@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-// import Sidebar from "../../components/Sidebar/Sidebar";
+import Sidebar from "../../components/Sidebar/Sidebar";
 import Box from "@material-ui/core/Box";
 // import Grid from "@material-ui/core/Grid";
 // import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Typography } from "@material-ui/core";
 
 // const sidebar = {
@@ -52,7 +52,7 @@ const Article = ({ location }) => {
   const classes = useStyles();
   const article = location.state;
   const date = new Date(article.createdAt);
-  // const articlesList = useSelector((state) => state.common.articles);
+  const articlesList = useSelector((state) => state.common.articles);
 
   return (
     <div>
@@ -72,11 +72,9 @@ const Article = ({ location }) => {
           <Typography variant="h5" component="h6">
             {article.title}
           </Typography>
-          <Typography variant="subtitle2">
-            {"Date: "}
-            {`${date.getFullYear()}-${
-              date.getMonth() + 1
-            }-${date.getDate()}`}{" "}
+          <Typography variant="subtitle1">{article.title}</Typography>
+          <Typography variant="subtitle2" color="textSecondary">
+            {`${date.toLocaleDateString()}`}
           </Typography>
           <Typography
             paragraph
@@ -86,9 +84,9 @@ const Article = ({ location }) => {
           {/* <Typography dangerouslySetInnerHTML={{article.description}} /> */}
           {/* </Paper> */}
         </Box>
-        {/* <Box className={classes.sidebarcl} p={2} m={2}>
+        <Box className={classes.sidebarcl} p={2} m={2}>
           <Sidebar articles={articlesList} />
-        </Box> */}
+        </Box>
       </Box>
     </div>
   );

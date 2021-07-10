@@ -179,20 +179,22 @@ const ToolbarComponent = ({ classes, openDrawerHandler }) => {
           <Typography className={classes.title} variant="h6" noWrap>
             Doccords
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+          {searchIn !== null && (
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder={search.placeholder}
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ "aria-label": "search" }}
+                onChange={(e) => handleSearchChange(e)}
+              />
             </div>
-            <InputBase
-              placeholder={search.placeholder}
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-              onChange={(e) => handleSearchChange(e)}
-            />
-          </div>
+          )}
           <div className={classes.grow} />
           <div>
             <IconButton

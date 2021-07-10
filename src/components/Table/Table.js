@@ -13,6 +13,7 @@ import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
+import tableIcons from "components/shared/tableIcons";
 
 const relationship = [
   { id: 1, title: "Self" },
@@ -228,6 +229,7 @@ const Table = (props) => {
   return (
     <div>
       <MaterialTable
+        icons={tableIcons}
         title="Profiles Table"
         data={rows}
         onSelectionChange={(rows) => {
@@ -237,19 +239,16 @@ const Table = (props) => {
           console.log(rows.length);
         }}
         columns={columns}
-        // editable={
-        //   onRowUpdate:()=>(newData)=>null,
-        // }
         options={{
           search: true,
-          paging: false,
+          paging: true,
           // filtering: true,
           // exportButton: true,
           selection: true,
         }}
         actions={[
           {
-            icon: "share",
+            icon: tableIcons.ShareIcon,
             tooltip: "Share Profile",
             onClick: (event, rowData) => {
               calculateSelectedProfilesAndDocs(rowData);
@@ -257,7 +256,7 @@ const Table = (props) => {
             },
           },
           {
-            icon: "edit",
+            icon: tableIcons.Edit,
             tooltip: isMultipleSelection
               ? "You can edit only one profile"
               : "Edit Profile",
@@ -265,13 +264,13 @@ const Table = (props) => {
             disabled: isMultipleSelection,
           },
           {
-            icon: "add",
+            icon: tableIcons.Add,
             tooltip: "Add Profile",
             isFreeAction: true,
             onClick: (event) => add(),
           },
           {
-            icon: "delete",
+            icon: tableIcons.Delete,
             tooltip: "Delete User",
             onClick: (event, rowData) => {
               deleteProfiles(rowData);

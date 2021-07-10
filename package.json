@@ -18,6 +18,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
+    "chart.js": "^3.4.0",
     "date-fns": "^2.22.1",
     "firebase": "^8.6.7",
     "fontsource-roboto": "^4.0.0",
@@ -27,6 +28,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-avatar-edit": "^1.0.0",
+    "react-chartjs-2": "^3.0.3",
     "react-doc-viewer": "^0.1.5",
     "react-dom": "^17.0.2",
     "react-dropzone-uploader": "^2.11.0",
@@ -69,6 +71,9 @@
     ]
   },
   "devDependencies": {
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.2",
+    "enzyme": "^3.11.0",
+    "enzyme-to-json": "^3.6.2",
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
@@ -78,7 +83,10 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.24.0",
     "husky": "^6.0.0",
+    "jest": "^26.6.0",
+    "jest-enzyme": "^7.1.2",
     "lint-staged": "^11.0.0",
+    "moxios": "^0.4.0",
     "prettier": "^2.3.0",
     "pretty-quick": "^3.1.0"
   },

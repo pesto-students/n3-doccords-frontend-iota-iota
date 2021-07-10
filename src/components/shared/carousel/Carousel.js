@@ -1,58 +1,80 @@
-// import React from "react";
-// import Carousel from "react-multi-carousel";
-// import "react-multi-carousel/lib/styles.css";
+/* eslint-disable react/prop-types */
 
-// const MyCarousel = ({ data }) => {
-//   const responsive = {
-//     desktop: {
-//       breakpoint: { max: 3000, min: 1024 },
-//       items: 3,
-//       slidesToSlide: 3, // optional, default to 1.
-//     },
-//     tablet: {
-//       breakpoint: { max: 1024, min: 464 },
-//       items: 2,
-//       slidesToSlide: 2, // optional, default to 1.
-//     },
-//     mobile: {
-//       breakpoint: { max: 464, min: 0 },
-//       items: 1,
-//       slidesToSlide: 1, // optional, default to 1.
-//     },
-//   };
+import React from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
-//   return (
-//     <div>
-//       <Carousel
-//         swipeable={false}
-//         draggable={false}
-//         showDots={true}
-//         responsive={responsive}
-//         ssr={true} // means to render carousel on server-side.
-//         infinite={true}
-//         autoPlay={this.props.deviceType !== "mobile"}
-//         autoPlaySpeed={1000}
-//         keyBoardControl={true}
-//         customTransition="all .5"
-//         transitionDuration={500}
-//         containerClass="carousel-container"
-//         removeArrowOnDeviceType={["tablet", "mobile"]}
-//         deviceType={this.props.deviceType}
-//         dotListClass="custom-dot-list-style"
-//         itemClass="carousel-item-padding-40-px"
-//       >
-//               data.map((item) => {
-//             <div>{Item}</div>
-//         }
+import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from "@material-ui/core/GridListTileBar";
 
-//         )
+// eslint-disable-next-line react/prop-types
+const MyCarousel = (props) => {
+  //   console.log(data);
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+      slidesToSlide: 1, // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 1, // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1, // optional, default to 1.
+    },
+  };
+  return (
+    <div>
+      <Carousel
+        swipeable={true}
+        draggable={true}
+        showDots={false}
+        responsive={responsive}
+        ssr={true} // means to render carousel on server-side.
+        infinite={true}
+        // autoPlay={props.deviceType !== "mobile"}
+        autoPlaySpeed={1000}
+        keyBoardControl={true}
+        customTransition="all .5"
+        transitionDuration={500}
+        containerClass="carousel-container"
+        // removeArrowOnDeviceType={["tablet", "mobile"]}
+        // deviceType={this.props.deviceType}
+        dotListClass="custom-dot-list-style"
+        itemClass="carousel-item-padding-100-px"
+      >
+        {/* <div>Item 2</div>
+        <div>Item 3</div>
+        <div>Item 4</div> */}
+        {
+          // eslint-disable-next-line react/prop-types
+        }
+        {props.data.map((item, index) => {
+          return (
+            // <div key={index} onClick={(e) => console.log(item.title)}>
+            //   {item.title}
+            // </div>
+            <GridListTile
+              key={index}
+              style={{ maxWidth: "500px", height: "300px", padding: "5px" }}
+              // eslint-disable-next-line react/prop-types
+              onClick={() => props.handleClick(item)}
+            >
+              <img src={item.picture} alt={item.title} />
+              <GridListTileBar
+                title={item.title}
+                // subtitle={<span>by: {item.author}</span>}
+              />
+            </GridListTile>
+          );
+        })}
+      </Carousel>
+    </div>
+  );
+};
 
-//         {/* <div>Item 2</div>
-//         <div>Item 3</div>
-//         <div>Item 4</div> */}
-//       </Carousel>
-//     </div>
-//   );
-// };
-
-// export default MyCarousel;
+export default MyCarousel;
