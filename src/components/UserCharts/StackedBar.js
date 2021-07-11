@@ -41,7 +41,7 @@ const data = {
 //   },
 // };
 
-const StackedBar = () => (
+const StackedBar = () => {
   <Box m={1}>
     <Typography variant="h6">Monthly Document Status </Typography>
     <Bar
@@ -73,7 +73,7 @@ const StackedBar = () => (
         },
       }}
     />
-  </Box>
-);
+  </Box>;
+};
 
 export default StackedBar;
