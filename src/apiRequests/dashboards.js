@@ -49,7 +49,7 @@ export const fetchCommonHealthIssuesForAdmin =
   () => async (dispatch, getState) => {
     const response = await customAxios.get(ADMIN_TOP_HEALTH_TOPICS);
     console.log("This is the respone", response);
-    if (response.success) {
+    if (response.statusText === "OK") {
       dispatch(fetchAdminMostCommonHealthTopics(response.data));
     }
   };

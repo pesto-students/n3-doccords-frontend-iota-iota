@@ -12,6 +12,7 @@ import { Provider } from "react-redux";
 import { store } from "redux/store";
 // menubar
 import Nav from "components/shared/menuBar/nav";
+import Footer from "components/footer/Footer";
 // import Snackbar from "@material-ui/core/Snackbar";
 // import MuiAlert from "@material-ui/lab/Alert";
 // styles
@@ -75,6 +76,7 @@ function App() {
                   <Alert severity="success">This is a success message!</Alert>
                 </Snackbar> */}
                 <RouterConfig />
+                <Footer style={{ marginTop: "300px", bottom: "0" }} mt={5} />
               </AuthProvider>
             </Router>
           </ThemeProvider>

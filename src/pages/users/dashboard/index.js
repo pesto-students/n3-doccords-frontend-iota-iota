@@ -5,15 +5,10 @@ import React, { useState, useEffect } from "react";
 import StackedBar from "components/UserCharts/StackedBar";
 import Polar from "components/UserCharts/Polar";
 import PieChart from "components/UserCharts/Pie";
-// import LineChart from "components/UserCharts/Line";
-// import DoughnutChart from "components/UserCharts/Doughnut";
 import { Grid, Container, Paper, Box } from "@material-ui/core";
 import { connect } from "react-redux";
 import { fetchAllProfilesAndDocuments } from "apiRequests/user";
-import {
-  fetchTopHealthTopicsForUserOrAdmin,
-  fetchCommonHealthIssuesForUser,
-} from "apiRequests/dashboards";
+import { fetchCommonHealthIssuesForUser } from "apiRequests/dashboards";
 import { fetchHealthTopicsAndArticles } from "apiRequests/home";
 
 const UserDashboard = (props) => {
@@ -29,70 +24,6 @@ const UserDashboard = (props) => {
   const [filteredHealthTopics, setFilteredHealthTopics] = useState([]);
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [stackChartData, setstackChartData] = useState([]);
-  console.log("healthTopic length", healthTopics.length);
-  console.log("whats in Articles", articles);
-
-  // eslint-disable-next-line react/prop-types
-  // const {
-  //   profiles,
-  //   documents,
-  //   healthTopics,
-  //   articles,
-  //   fetchAllProfilesAndDocuments,
-  //   fetchHealthTopicsAndArticles,
-  // } = props;
-  // const [topHealthTopics, setTopHealthTopics] = useState({});
-  // // const [healthtopic, setHealthTopic] = useState(healthTopics);
-  // const [filteredTopics, setFilteredTopics] = useState([]);
-
-  // console.log(`Total  profiles ${profiles.length}`);
-  // console.log(`Total  documents ${documents.length}`);
-  // // console.log(topHealthTopics);
-  // let titlesArr;
-
-  // useEffect(() => {
-  //   fetchAllProfilesAndDocuments();
-  //   fetchHealthTopicsAndArticles();
-  //   (async () => {
-  //     const data = await fetchTopHealthTopicsForUserOrAdmin();
-  //     setTopHealthTopics(data);
-  //   })();
-
-  //   return () => {};
-  // }, []);
-
-  // useEffect(() => {
-  //   if (topHealthTopics !== undefined) {
-  //     getHealthIDs(topHealthTopics);
-  //   }
-
-  //   return () => {};
-  // }, [healthTopics, topHealthTopics]);
-
-  // // useEffect(() => {
-  // //   return () => {};
-  // // }, [titlesArr]);
-
-  // const getHealthIDs = (data) => {
-  //   const keys = Object.keys(data);
-
-  //   // console.log(keys.length);
-  //   // console.log(healthTopics.length);
-  //   console.log(articles.length);
-  //   titlesArr = keys.map((key) => {
-  //     return healthTopics.filter((topic) => {
-  //       return topic.healthTopicId === key;
-  //     });
-  //     // .map((item) => item.title);
-  //   });
-  // console.log(
-  //   "ites the filter arr",
-  //   titles.map((t) => t.title)
-  // );
-  // titles.map((t, index) => console.log(t[index].title));
-  // console.log(titlesArr[1][0].title);
-  //   setFilteredTopics(titlesArr);
-  // };
 
   useEffect(() => {
     props.fetchCommonHealthIssuesForUser();
@@ -120,18 +51,9 @@ const UserDashboard = (props) => {
   };
   const filterArticles = () => {
     let fltArticles = healthKeysArr.map((key) => {
-      console.log(
-        "keys",
-        healthKeysArr.map((key) => key)
-      );
-      console.log(
-        "Articles keys",
-        articles.map((article) => article.healthTopic)
-      );
       let articleList = articles.filter(
         (article) => article.healthTopic === key
       );
-      console.log("articleList", articleList);
       return { key: articleList.length };
     });
     setFilteredArticles(fltArticles);
@@ -158,19 +80,9 @@ const UserDashboard = (props) => {
     return modified;
   };
 
-  // const chartData = modifyProfiles();
-  // console.log("this is the lastChart data", chartData);
-
   return (
     <Container margin="auto">
       <Grid container spacing={4} justify="center">
-        {/* <Grid item xs={12} md={6}>
-          <Paper>
-            <Box>
-              <LineChart />
-            </Box>
-          </Paper>
-        </Grid> */}
         <Grid item xs={10} md={4}>
           <Paper>
             <Box>
@@ -207,14 +119,6 @@ const UserDashboard = (props) => {
             </Box>
           </Paper>
         </Grid>
-
-        {/* <Grid item xs={12} sm={6}>
-          <Paper>
-            <Box>
-              <DoughnutChart />
-            </Box>
-          </Paper>
-        </Grid> */}
       </Grid>
     </Container>
   );
