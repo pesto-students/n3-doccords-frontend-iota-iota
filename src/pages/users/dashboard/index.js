@@ -162,8 +162,8 @@ const UserDashboard = (props) => {
   // console.log("this is the lastChart data", chartData);
 
   return (
-    <Container>
-      <Grid container spacing={2} justify="spaceAround">
+    <Container margin="auto">
+      <Grid container spacing={4} justify="center">
         {/* <Grid item xs={12} md={6}>
           <Paper>
             <Box>
@@ -171,7 +171,7 @@ const UserDashboard = (props) => {
             </Box>
           </Paper>
         </Grid> */}
-        <Grid item xs={12} md={6}>
+        <Grid item xs={10} md={4}>
           <Paper>
             <Box>
               {filteredHealthTopics && (
@@ -184,7 +184,7 @@ const UserDashboard = (props) => {
             </Box>
           </Paper>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={10} md={4}>
           <Paper>
             <Box>
               {filteredHealthTopics && (
@@ -197,10 +197,13 @@ const UserDashboard = (props) => {
             </Box>
           </Paper>
         </Grid>
-        <Grid item xs={12} md={12}>
+        <Grid item xs={12} md={8}>
           <Paper>
             <Box>
-              <StackedBar data={stackChartData} />
+              <StackedBar
+                chartData={stackChartData}
+                title={"Document Status Under Profiles"}
+              />
             </Box>
           </Paper>
         </Grid>

@@ -29,7 +29,7 @@ const PieChart = (props) => {
 
   return (
     <Box m={1} p={1}>
-      <Typography varient="h6" align="center">
+      <Typography varient="h4" align="center">
         {props.title}
       </Typography>
       <Pie
@@ -42,7 +42,7 @@ const PieChart = (props) => {
           width: "400px",
           height: "400px",
           legend: {
-            display: false,
+            display: true,
           },
         }}
       />
