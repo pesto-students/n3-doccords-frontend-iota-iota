@@ -192,7 +192,6 @@ const Table = (props) => {
       (profile) => rowsData[0].profileId === profile.profileId
     );
     const selectedProfile = filtered[0];
-    console.log(selectedProfile);
     history.push({
       pathname: `/profiles/edit`,
       state: selectedProfile,
@@ -236,7 +235,6 @@ const Table = (props) => {
           rows.length > 1
             ? setIsMultipleSelection(true)
             : setIsMultipleSelection(false);
-          console.log(rows.length);
         }}
         columns={columns}
         options={{

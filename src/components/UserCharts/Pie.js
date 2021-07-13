@@ -10,10 +10,6 @@ const PieChart = (props) => {
   const chartData = props.chartdata.map((item) => Object.values(item)).flat(1);
   const colorArr = ["red", "green", "orange", "blue", "pink"];
 
-  console.log("this is labels", labels);
-  console.log("this is chartData", chartData);
-  console.log("this is incoming chartData", props.chartdata);
-
   const data = {
     labels: labels,
     datasets: [

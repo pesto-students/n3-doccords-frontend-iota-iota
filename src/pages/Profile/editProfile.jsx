@@ -79,7 +79,6 @@ const EditProfile = (props) => {
     e.preventDefault();
     if (validate()) {
       // Save data to backend and in local storge also
-      console.log(values);
       resetForm();
     }
   };

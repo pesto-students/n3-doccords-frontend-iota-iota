@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Sidebar(props) {
   const classes = useStyles();
   const { articles, handleClick } = props;
-  console.log("This is related articles", articles);
 
   return (
     <Box mt={3}>

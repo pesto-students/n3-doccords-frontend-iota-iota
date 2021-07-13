@@ -160,7 +160,6 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
   };
   const onCreate = () => {
     checkForErrors();
-    console.log(error);
     if (error.title.status) {
       // eslint-disable-next-line no-useless-return
       return;
@@ -170,7 +169,6 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
   };
   const onUpdate = () => {
     checkForErrors();
-    console.log(error);
     if (error.title.status) {
       // eslint-disable-next-line no-useless-return
       return;

@@ -67,7 +67,6 @@ const Article = ({ location }) => {
     }
   }, [articlesList, relatedArticles]);
   // className={classes.hero}
-  console.log("this is tthe Image LInk ", article.picture);
 
   const handleClickOnHV = (article) => {
     history.push({

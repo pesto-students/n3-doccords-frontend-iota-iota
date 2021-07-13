@@ -8,10 +8,7 @@ const Polar = (props) => {
   const labels = props.labels.map((item) => item.title);
   const chartData = Object.values(props.data);
   const colorArr = ["red", "green", "orange", "blue", "pink"];
-  // console.log(
-  //   "This is PolarChart labels",
-  //   props.labels.map((item) => item.title)
-  // );
+
   const data = {
     labels: labels,
     datasets: [

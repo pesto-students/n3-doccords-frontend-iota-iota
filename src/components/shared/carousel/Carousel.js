@@ -9,7 +9,6 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 
 // eslint-disable-next-line react/prop-types
 const MyCarousel = (props) => {
-  //   console.log(data);
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },

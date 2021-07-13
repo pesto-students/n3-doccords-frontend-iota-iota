@@ -22,12 +22,17 @@ import { Bar } from "react-chartjs-2";
 //   },
 // };
 
-const StackedBar = ({ chartData, title }) => {
-  console.log(chartData);
-  const labels = chartData.map((item) => item.name);
-  const uploadDoc = chartData.map((item) => item.uploadedDoc);
-  const sharedDoc = chartData.map((item) => item.sharedDoc);
-  console.log(labels);
+const StackedBar = ({ chartData, title, isAdmin = false }) => {
+  const labels = isAdmin
+    ? chartData.map((item) => item.name)
+    : chartData.map((item) => item.name);
+  const uploadDoc = isAdmin
+    ? chartData.map((item) => item.uploadedCount)
+    : chartData.map((item) => item.uploadedDoc);
+  const sharedDoc = isAdmin
+    ? chartData.map((item) => item.sharedCount)
+    : chartData.map((item) => item.sharedDoc);
+
   const data = {
     labels: labels,
     datasets: [
