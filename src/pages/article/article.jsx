@@ -1,33 +1,22 @@
+/* eslint-disable prefer-const */
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Box from "@material-ui/core/Box";
 // import Grid from "@material-ui/core/Grid";
 // import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
-import { Typography } from "@material-ui/core";
-
-// const sidebar = {
-//   articles: [
-//     { title: "March 2020", url: "#" },
-//     { title: "February 2020", url: "#" },
-//     { title: "January 2020", url: "#" },
-//     { title: "November 1999", url: "#" },
-//     { title: "October 1999", url: "#" },
-//     { title: "September 1999", url: "#" },
-//     { title: "August 1999", url: "#" },
-//     { title: "July 1999", url: "#" },
-//     { title: "June 1999", url: "#" },
-//     { title: "May 1999", url: "#" },
-//     { title: "April 1999", url: "#" },
-//   ],
-// };
+import { Typography, Paper, Grid } from "@material-ui/core";
+import Hidden from "@material-ui/core/Hidden";
+import withWidth from "@material-ui/core/withWidth";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-  grow: {
-    width: "70vw",
-  },
+  // grow: {
+  //   display: "flex",
+  //   flexDirection: "col",
+  // },
   sidebarcl: {
     width: "15vw",
   },
@@ -49,30 +38,77 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Article = ({ location }) => {
+  // eslint-disable-next-line no-unused-vars
   const classes = useStyles();
   const article = location.state;
   const date = new Date(article.createdAt);
   const articlesList = useSelector((state) => state.common.articles);
+  const healthTopicList = useSelector((state) => state.common.healthTopics);
+  const [relatedArticles, setRelatedArticles] = useState([]);
+  const [healthTopicTitle, setHealthTopicTitle] = useState("");
+  const bgImage = article.picture;
+  const history = useHistory();
+
+  console.log(healthTopicList);
+  useEffect(() => {
+    if (articlesList !== undefined) {
+      setRelatedArticles(
+        articlesList
+          .filter((item) => item.healthTopic === article.healthTopic)
+          .filter((item) => item.title !== article.title)
+      );
+    }
+    if (healthTopicList !== undefined) {
+      // TO DO find the health topic title
+      let healthTitle = healthTopicList.find(
+        (item, index) => item.healthTopicId === article.healthTopic
+      );
+      setHealthTopicTitle(healthTitle.title);
+    }
+  }, [articlesList, relatedArticles]);
+  // className={classes.hero}
+  console.log("this is tthe Image LInk ", article.picture);
+
+  const handleClickOnHV = (article) => {
+    history.push({
+      pathname: `/article/${article.articleId}`,
+      state: article,
+    });
+  };
 
   return (
     <div>
-      <Box className={classes.hero}>
-        <h5>{article.title}</h5>
-      </Box>
+      <Paper
+        style={{
+          backgroundImage: `url(${bgImage})`,
+          height: "35vh",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          position: "relative",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "#fff",
+          fontSize: "2rem",
+        }}
+        mt={3}
+        pt={2}
+      ></Paper>
       <Box
         display="flex"
-        flexDirection="row"
+        flexDirection="col"
         justifyContent="space-between"
         p={2}
         m={2}
         pt={3}
       >
-        <Box className={classes.grow} p={2} m={2}>
+        <Grid xs={10} md={8}>
           {/* <Paper> */}
           <Typography variant="h5" component="h6">
             {article.title}
           </Typography>
-          <Typography variant="subtitle1">{article.title}</Typography>
+          <Typography variant="subtitle1">{healthTopicTitle}</Typography>
           <Typography variant="subtitle2" color="textSecondary">
             {`${date.toLocaleDateString()}`}
           </Typography>
@@ -83,13 +119,20 @@ const Article = ({ location }) => {
 
           {/* <Typography dangerouslySetInnerHTML={{article.description}} /> */}
           {/* </Paper> */}
-        </Box>
-        <Box className={classes.sidebarcl} p={2} m={2}>
-          <Sidebar articles={articlesList} />
-        </Box>
+        </Grid>
+        {relatedArticles.length > 1 && (
+          <Hidden smDown>
+            <Grid sm={3}>
+              <Sidebar
+                articles={relatedArticles}
+                handleClick={handleClickOnHV}
+              />
+            </Grid>
+          </Hidden>
+        )}
       </Box>
     </div>
   );
 };
 
-export default Article;
+export default withWidth()(Article);
