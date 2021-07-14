@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VerticalGridList rendering without Error 1`] = `
+<div
+  className="makeStyles-root-1"
+>
+  <WithStyles(ForwardRef(GridList))
+    cellHeight={180}
+    className="makeStyles-gridList-2"
+    cols={3}
+  >
+    <WithStyles(ForwardRef(GridListTile))
+      key="sZX6do6jozYrHnYfBVeH"
+      onClick={[Function]}
+    >
+      <img
+        alt="Aging 2"
+        src="https://firebasestorage.googleapis.com/v0/b/doccords-55659.appspot.com/o/1625396784996-Aging.jpeg_1625396785947?alt=media"
+      />
+      <WithStyles(ForwardRef(GridListTileBar))
+        title="Aging 2"
+      />
+    </WithStyles(ForwardRef(GridListTile))>
+  </WithStyles(ForwardRef(GridList))>
+</div>
+`;
