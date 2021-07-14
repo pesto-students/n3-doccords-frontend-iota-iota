@@ -4,6 +4,8 @@ const initialState = {
   userDetail: {},
   profiles: [],
   documents: [],
+  sharedDocuments: [],
+  suggestedTopics: [],
 };
 
 export const user = (state = initialState, action) => {
@@ -33,6 +35,16 @@ export const user = (state = initialState, action) => {
       return {
         ...state,
         profiles: action.payload,
+      };
+    case type.SET_SHARED_DOC:
+      return {
+        ...state,
+        sharedDocuments: action.payload,
+      };
+    case type.SET_SUGGESTED_TOPICS:
+      return {
+        ...state,
+        suggestedTopics: action.payload,
       };
     default:
       return state;

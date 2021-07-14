@@ -4,12 +4,14 @@ import {
   CREATE_HEALTH_TOPICS_URL,
   UPDATE_HEALTH_TOPICS_URL,
   ADMIN_ARTICLES_URL,
+  SUGGESTED_TOPICS_URL,
 } from "apiRequests/constants";
 import {
   setAllHealthTopics,
   setUploadedImageURL,
   setAllArticles,
 } from "redux/actions/common";
+import { setSuggestedTopics } from "redux/actions/user";
 
 export const deleteHealthTopic =
   (healthTopicId) => async (dispatch, getState) => {
@@ -27,10 +29,11 @@ export const deleteHealthTopic =
   };
 
 export const createNewHealthTopic =
-  (title, picture, history) => async (dispatch, getState) => {
+  (title, picture, history, documentId) => async (dispatch, getState) => {
     const newHealthTopic = await customAxios.post(CREATE_HEALTH_TOPICS_URL, {
       title,
       picture,
+      documentId,
     });
     const healthTopicsArray = getState().common.healthTopics;
     if (newHealthTopic.data.success) {
@@ -125,5 +128,11 @@ export const deleteArticle = (articleId) => async (dispatch, getState) => {
     dispatch(setAllArticles(removedArr));
   } else {
     console.log(deleteHealthTopic.data);
+  }
+};
+export const getSuggestedTopics = () => async (dispatch, getState) => {
+  const suggestedTopics = await customAxios.get(SUGGESTED_TOPICS_URL);
+  if (suggestedTopics.data.success) {
+    dispatch(setSuggestedTopics(suggestedTopics.data.data));
   }
 };

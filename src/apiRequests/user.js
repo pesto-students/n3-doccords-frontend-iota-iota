@@ -6,11 +6,16 @@ import {
   deleteUserDetail,
   setProfilesAndDocuments,
   setProfiles,
+  setSharedDoc,
 } from "redux/actions/user";
 import { setUploadedImageURL } from "redux/actions/common";
 import { fetchTokenFromServer, currentUser } from "context/AuthContext";
 import customAxios from "apiRequests/customAxios";
-import { USER_PROFILE_URL, USER_DOCUMENTS_URL } from "apiRequests/constants";
+import {
+  USER_PROFILE_URL,
+  USER_DOCUMENTS_URL,
+  USER_URL,
+} from "apiRequests/constants";
 
 export const fetchUserDetail = async (dispatch) => {
   const idToken = await fetchTokenFromServer();
@@ -38,7 +43,9 @@ export const fetchUserDetail = async (dispatch) => {
   dispatch(setUserDetial(userDetail.data.user));
   dispatch(setLoading(false));
 };
-
+export const updateUser = async (token) => {
+  customAxios.put(USER_URL, { token });
+};
 export const clearUserDetail = async (dispatch) => {
   dispatch(deleteUserDetail);
 };
@@ -144,12 +151,13 @@ export const updateProfile =
   };
 
 export const createDoc = (doc) => async (dispatch, getState) => {
-  const { name, link, healthTopicId, profileId } = doc;
+  const { name, link, healthTopicId, profileId, suggestedTopic } = doc;
   const data = {
     name,
     link,
     healthTopicId,
     profileId,
+    suggestedTopic,
   };
   const createdDoc = await customAxios.post(USER_DOCUMENTS_URL, data);
   if (createdDoc.data.success) {
@@ -165,5 +173,33 @@ export const shareDocument = (data) => async (dispatch, getState) => {
   });
   if (shareDoc.data.success) {
     dispatch(fetchAllProfilesAndDocuments());
+  }
+};
+export const updateDocAccess = (data) => async (dispatch, getState) => {
+  const { documentId, sharedList } = data;
+  const docAccess = await customAxios.put(`${USER_DOCUMENTS_URL}/access`, {
+    documentId,
+    sharedList,
+  });
+  if (docAccess.data.success) {
+    dispatch(fetchAllProfilesAndDocuments());
+  }
+};
+
+export const deleteDocuments = (documentIds) => async (dispatch, getState) => {
+  const deletedDocs = await customAxios.delete(USER_DOCUMENTS_URL, {
+    data: {
+      documentIds,
+    },
+  });
+  if (deletedDocs.data.success) {
+    dispatch(fetchAllProfilesAndDocuments());
+  }
+};
+
+export const fetchSharedDocs = async (id, dispatch) => {
+  const sharedDocs = await customAxios.get(`${USER_DOCUMENTS_URL}/share/${id}`);
+  if (sharedDocs.data.success) {
+    dispatch(setSharedDoc(sharedDocs.data.documents));
   }
 };

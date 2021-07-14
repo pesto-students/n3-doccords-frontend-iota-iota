@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import React, { useState } from "react";
 // Router
 import { BrowserRouter as Router } from "react-router-dom";
@@ -12,10 +14,11 @@ import { Provider } from "react-redux";
 import { store } from "redux/store";
 // menubar
 import Nav from "components/shared/menuBar/nav";
-// import Snackbar from "@material-ui/core/Snackbar";
-// import MuiAlert from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 // styles
 import "./App.css";
+import { getToken, onMessageListener } from "firebaseSetup";
 // import { makeStyles } from "@material-ui/core/styles";
 // import CssBaseline from "@material-ui/core/CssBaseline";
 
@@ -48,12 +51,26 @@ import "./App.css";
 //     ...theme.mixins.toolbar,
 //   },
 // }));
-// function Alert(props) {
-//   return <MuiAlert elevation={6} variant="filled" {...props} />;
-// }
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 function App() {
   const [darkState] = useState(false);
+  const [snackBarStatus, setSnackBarStatus] = useState(false);
+  const [isTokenFound, setTokenFound] = useState(false);
+  const [notification, setNotification] = useState({ title: "", body: "" });
+  getToken(setTokenFound);
+  onMessageListener()
+    .then((payload) => {
+      setSnackBarStatus(true);
+      setNotification({
+        title: payload.notification.title,
+        body: payload.notification.body,
+      });
+      console.log(payload);
+    })
+    .catch((err) => console.log("failed: ", err));
   // const handleThemeChange = () => {
   //   setDarkState(!darkState);
   //   console.log("theme=", darkState ? "dark" : "light");
@@ -71,9 +88,13 @@ function App() {
             <Router>
               <AuthProvider>
                 <Nav />
-                {/* <Snackbar open={true} autoHideDuration={6000}>
-                  <Alert severity="success">This is a success message!</Alert>
-                </Snackbar> */}
+                <Snackbar
+                  open={snackBarStatus}
+                  autoHideDuration={6000}
+                  onClose={() => setSnackBarStatus(false)}
+                >
+                  <Alert severity="success">{notification.body}</Alert>
+                </Snackbar>
                 <RouterConfig />
               </AuthProvider>
             </Router>
