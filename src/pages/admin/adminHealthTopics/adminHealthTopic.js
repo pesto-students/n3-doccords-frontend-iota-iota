@@ -176,7 +176,6 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
   };
   const onUpdate = () => {
     checkForErrors();
-    console.log(error);
     if (error.title.status) {
       // eslint-disable-next-line no-useless-return
       return;

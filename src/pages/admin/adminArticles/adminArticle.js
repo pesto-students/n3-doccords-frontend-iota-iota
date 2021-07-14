@@ -82,7 +82,6 @@ const AdminArticle = ({
     fetchAllArticles();
     if (location.state) {
       const { title, healthTopicId, picture, articleId } = location.state;
-      console.log(healthTopicId);
       setArticleId(articleId);
       setTitle(title);
       setHealthTopicId(healthTopicId);
@@ -142,7 +141,6 @@ const AdminArticle = ({
         await setIsLoading(false);
         await setIsSuccess(true);
         dispatch(setUploadedImageURL(res.data.fileLocation));
-        console.log(res);
       }
     } catch (error) {
       setIsLoading(false);
@@ -337,7 +335,6 @@ const AdminArticle = ({
       );
     }
   };
-  console.log(description);
   return (
     <div>
       <Button

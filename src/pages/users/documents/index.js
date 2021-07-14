@@ -134,7 +134,6 @@ const Documents = ({
       });
       return document;
     });
-    console.log("Documents", documentList);
     setRow(documentList);
   }, [documents]);
 

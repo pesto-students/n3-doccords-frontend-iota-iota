@@ -16,6 +16,9 @@ import { store } from "redux/store";
 import Nav from "components/shared/menuBar/nav";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import Footer from "components/footer/Footer";
+// import Snackbar from "@material-ui/core/Snackbar";
+// import MuiAlert from "@material-ui/lab/Alert";
 // styles
 import "./App.css";
 import { getToken, onMessageListener } from "firebaseSetup";
@@ -96,6 +99,7 @@ function App() {
                   <Alert severity="success">{notification.body}</Alert>
                 </Snackbar>
                 <RouterConfig />
+                <Footer style={{ marginTop: "300px", bottom: "0" }} mt={5} />
               </AuthProvider>
             </Router>
           </ThemeProvider>
