@@ -15,8 +15,6 @@ import MailIcon from "@material-ui/icons/Mail";
 import { useSelector } from "react-redux";
 import {
   ROOT,
-  HEALTH_TOPICS,
-  ARTICLES,
   DASHBOARD,
   PROFILES,
   DOCUMENTS,
@@ -40,27 +38,11 @@ const navList = {
       name: "Home",
       link: ROOT,
     },
-    {
-      name: "Health Topics",
-      link: HEALTH_TOPICS,
-    },
-    {
-      name: "Articles",
-      link: ARTICLES,
-    },
   ],
   registeredUser: [
     {
       name: "Home",
       link: ROOT,
-    },
-    {
-      name: "Health Topics",
-      link: HEALTH_TOPICS,
-    },
-    {
-      name: "Articles",
-      link: ARTICLES,
     },
     {
       name: "Dasboard",
@@ -76,6 +58,10 @@ const navList = {
     },
   ],
   admin: [
+    {
+      name: "Home",
+      link: ROOT,
+    },
     {
       name: "Dasboard",
       link: ADMIN_DASHBOARD,

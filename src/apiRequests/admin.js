@@ -136,11 +136,12 @@ export const getSuggestedTopics = () => async (dispatch, getState) => {
     dispatch(setSuggestedTopics(suggestedTopics.data.data));
   }
 };
-export const declineSuggestion = (id) => async (dispatch, getState) => {
-  const suggestedTopicId = id;
+export const declineSuggestion = (data) => async (dispatch, getState) => {
+  const { suggestedTopicId, documentId } = data;
 
   const suggestedTopic = await customAxios.put(SUGGESTED_TOPICS_URL, {
     suggestedTopicId,
+    documentId,
   });
   if (suggestedTopic.data.success) {
     dispatch(getSuggestedTopics());

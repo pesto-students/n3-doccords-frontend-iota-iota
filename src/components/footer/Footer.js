@@ -23,7 +23,6 @@ const Footer = () => {
               </Box>
               <Box mt={2}>
                 <Typography variant="body2">Mentor</Typography>
-                <Typography variant="body2">email</Typography>
               </Box>
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -32,7 +31,7 @@ const Footer = () => {
               </Box>
               <Box mt={2}>
                 <Typography variant="body2">Team Member</Typography>
-                <Typography variant="body2">email</Typography>
+                <Typography variant="body2">3elango@gmail.com</Typography>
               </Box>
             </Grid>
             <Grid item xs={12} sm={4}>

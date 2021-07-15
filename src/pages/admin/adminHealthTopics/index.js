@@ -137,7 +137,10 @@ const AdminHealthTopics = ({
     });
   };
   const declineTopic = (suggestedTopic) => {
-    declineSuggestion(suggestedTopic.suggestedTopicId);
+    declineSuggestion({
+      suggestedTopicId: suggestedTopic.suggestedTopicId,
+      documentId: suggestedTopic.documentId,
+    });
   };
   const clickedYes = () => {
     deleteHealthTopic(deleteHealthTopicId);
@@ -299,7 +302,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchAllHealthTopics: () => dispatch(fetchAllHealthTopics()),
   getSuggestedTopics: () => dispatch(getSuggestedTopics()),
   deleteHealthTopic: (articleId) => dispatch(deleteHealthTopic(articleId)),
-  declineSuggestion: (id) => dispatch(declineSuggestion(id)),
+  declineSuggestion: (data) => dispatch(declineSuggestion(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminHealthTopics);
