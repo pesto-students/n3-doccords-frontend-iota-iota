@@ -1,52 +1,44 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Typography, Box } from "@material-ui/core";
 
-const data = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        "rgba(255, 99, 132, 0.2)",
-        "rgba(54, 162, 235, 0.2)",
-        "rgba(255, 206, 86, 0.2)",
-        "rgba(75, 192, 192, 0.2)",
-        "rgba(153, 102, 255, 0.2)",
-        "rgba(255, 159, 64, 0.2)",
-      ],
-      borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(153, 102, 255, 1)",
-        "rgba(255, 159, 64, 1)",
-      ],
-      borderWidth: 2,
-    },
-  ],
+const DoughnutChart = (props) => {
+  const chartData = Object.values(props.chartdata);
+  const colorArr = ["red", "green", "orange", "blue", "pink"];
+
+  const data = {
+    labels: props.labels,
+    datasets: [
+      {
+        label: "# of Votes",
+        data: chartData,
+        backgroundColor: colorArr.slice(0, props.labels.length),
+        borderWidth: 2,
+      },
+    ],
+  };
+
+  return (
+    <Box m={1}>
+      <Typography varient="h4" align="center">
+        {props.title}
+      </Typography>
+      <Doughnut
+        data={data}
+        options={{
+          padding: "0px",
+          responsive: true,
+          maintainAspectRatio: true,
+          defaultFontSize: "14px",
+          width: "400px",
+          height: "400px",
+          legend: {
+            display: false,
+          },
+        }}
+      />
+    </Box>
+  );
 };
-
-const DoughnutChart = () => (
-  <Box m={1}>
-    <Typography varient="h6">Doughnut Chart</Typography>
-    <Doughnut
-      data={data}
-      options={{
-        padding: "0px",
-        responsive: true,
-        maintainAspectRatio: true,
-        defaultFontSize: "14px",
-        width: "400",
-        height: "400",
-        legend: {
-          display: false,
-        },
-      }}
-    />
-  </Box>
-);
-
 export default DoughnutChart;

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
@@ -20,19 +21,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Sidebar(props) {
   const classes = useStyles();
-  const { articles } = props;
+  const { articles, handleClick } = props;
 
   return (
-    <Box>
+    <Box mt={3}>
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-        Recently added Articles
+        Related Articles
       </Typography>
       {articles.map((article) => (
         <Link
           display="block"
           variant="body1"
-          href={article.url}
           key={article.title}
+          onClick={() => handleClick(article)}
         >
           {article.title}
         </Link>

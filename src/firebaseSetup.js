@@ -1,5 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/messaging";
+import { updateUser } from "apiRequests/user";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDG_6b7GzDixXpfpEXwqlyY6qeg0vavTJ4",
@@ -13,3 +15,37 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 
 export const auth = app.auth();
+export const messaging = app.messaging();
+
+export const getToken = (setTokenFound) => {
+  return messaging
+    .getToken({
+      vapidKey:
+        "BP3AYZBE_HYPWE6IXn0rH4N39LvPfNtWAhIzwpsYs3u_lcJ4bbO9aY095tJB98ej19POd0336XOCIqAa4Ak2Peo",
+    })
+    .then((currentToken) => {
+      if (currentToken) {
+        updateUser(currentToken);
+        console.log("current token for client: ", currentToken);
+        setTokenFound(true);
+        // Track the token -> client mapping, by sending to backend server
+        // show on the UI that permission is secured
+      } else {
+        console.log(
+          "No registration token available. Request permission to generate one."
+        );
+        setTokenFound(false);
+        // shows on the UI that permission is required
+      }
+    })
+    .catch((err) => {
+      console.log("An error occurred while retrieving token. ", err);
+      // catch error while creating client token
+    });
+};
+export const onMessageListener = () =>
+  new Promise((resolve) => {
+    messaging.onMessage((payload) => {
+      resolve(payload);
+    });
+  });

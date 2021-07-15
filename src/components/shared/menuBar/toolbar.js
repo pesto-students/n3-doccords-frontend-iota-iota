@@ -90,27 +90,6 @@ const ToolbarComponent = ({ classes, openDrawerHandler }) => {
         data: articleList,
       };
 
-  // const setSearch = () => {
-  //   const searchData = {
-  //     home: {
-  //       searchTitle: "Search Health Topics",
-  //       data: healthTopicsList,
-  //     },
-  //     articles: {
-  //       searchTitle: "Search Articles",
-  //       data: articleList,
-  //     },
-  //   };
-
-  //   if (searchIn) {
-  //     search = searchData.home;
-  //     console.log(search, "I am in search");
-  //   } else {
-  //     search = searchData.articles;
-  //     console.log(search, "I am in  else search");
-  //   }
-  // };
-
   useEffect(() => {
     // setSearch();
     return () => {};

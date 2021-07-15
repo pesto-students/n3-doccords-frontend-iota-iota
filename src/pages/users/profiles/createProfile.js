@@ -115,7 +115,6 @@ const CreateProfile = ({
       const knownIssuesList = knownIssues.map((issue) => {
         let topicData = {};
         healthTopics.forEach((topic) => {
-          // console.log(topic, issue);
           if (topic.healthTopicId === issue) {
             topicData = topic;
           }
@@ -313,7 +312,6 @@ const CreateProfile = ({
                     />
                   )}
                   onChange={(event, value) => {
-                    console.log(value);
                     setKnownIssues(value);
                   }}
                 />

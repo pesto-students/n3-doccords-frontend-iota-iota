@@ -23,3 +23,11 @@ export const setProfiles = (payload) => ({
   type: types.SET_PROFILES,
   payload,
 });
+export const setSharedDoc = (payload) => ({
+  type: types.SET_SHARED_DOC,
+  payload,
+});
+export const setSuggestedTopics = (payload) => ({
+  type: types.SET_SUGGESTED_TOPICS,
+  payload,
+});

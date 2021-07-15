@@ -1,51 +1,48 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { PolarArea } from "react-chartjs-2";
 import { Typography, Box } from "@material-ui/core";
 
-const data = {
-  labels: [
-    "Cancer",
-    "Blood Pressure",
-    "Sugar",
-    "Covid-19",
-    "Skin Related",
-    "Hair fall",
-  ],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        "rgba(255, 99, 132, 0.5)",
-        "rgba(54, 162, 235, 0.5)",
-        "rgba(255, 206, 86, 0.5)",
-        "rgba(75, 192, 192, 0.5)",
-        "rgba(153, 102, 255, 0.5)",
-        "rgba(255, 159, 64, 0.5)",
-      ],
-      borderWidth: 2,
-    },
-  ],
-};
+const Polar = (props) => {
+  // const { titlesArr, topHealthTopics } = props;
+  const labels = props.labels.map((item) => item.title);
+  const chartData = Object.values(props.data);
+  const colorArr = ["red", "green", "orange", "blue", "pink"];
 
-const Polar = () => (
-  <Box m={1} p={1}>
-    <Typography varient="h6">Articles Under Family Health Issues</Typography>
-    <PolarArea
-      data={data}
-      options={{
-        padding: "0px",
-        responsive: true,
-        maintainAspectRatio: true,
-        defaultFontSize: "14px",
-        width: "400",
-        height: "400",
-        legend: {
-          display: false,
-        },
-      }}
-    />
-  </Box>
-);
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "# of Votes",
+        data: chartData,
+        backgroundColor: colorArr.slice(0, labels.length),
+        borderWidth: 2,
+      },
+    ],
+  };
+
+  return (
+    <Box m={1} p={1}>
+      <Typography varient="h4" align="center">
+        {/* Articles Under Family Health Issues */}
+        {props.title}
+      </Typography>
+      <PolarArea
+        data={data}
+        options={{
+          padding: "0px",
+          responsive: true,
+          maintainAspectRatio: true,
+          defaultFontSize: "14px",
+          width: "400px",
+          height: "400px",
+          legend: {
+            display: false,
+          },
+        }}
+      />
+    </Box>
+  );
+};
 
 export default Polar;

@@ -57,7 +57,6 @@ const AdminArticles = ({
   const history = useHistory();
 
   const setArticlesWithTopics = () => {
-    console.log(articles);
     const newArticles = articles.map((article) => {
       // eslint-disable-next-line react/prop-types
       healthTopics.forEach((topic) => {

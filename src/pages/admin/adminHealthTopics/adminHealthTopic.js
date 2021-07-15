@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
@@ -33,7 +34,7 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
   const classes = useStyles();
   const [title, setTitle] = useState("");
   const [healthTopicId, setHealthTopicId] = useState("");
-  // eslint-disable-next-line no-unused-vars
+  const [documentId, setDocumentId] = useState("");
   const [picture, setPicture] = useState("");
   const history = useHistory();
   const location = useLocation();
@@ -44,6 +45,12 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
     },
   });
   useEffect(() => {
+    if (location.state.suggestedTopicDetail) {
+      const { title, documentId } = location.state.suggestedTopicDetail;
+      setTitle(title);
+      setDocumentId(documentId);
+      return;
+    }
     if (location.state) {
       const { title, healthTopicId, picture } = location.state;
       setTitle(title);
@@ -160,17 +167,15 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
   };
   const onCreate = () => {
     checkForErrors();
-    console.log(error);
     if (error.title.status) {
       // eslint-disable-next-line no-useless-return
       return;
     } else {
-      createNewHealthTopic(title, uploadedLink, history);
+      createNewHealthTopic(title, uploadedLink, history, documentId);
     }
   };
   const onUpdate = () => {
     checkForErrors();
-    console.log(error);
     if (error.title.status) {
       // eslint-disable-next-line no-useless-return
       return;
@@ -355,8 +360,8 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = (dispatch) => ({
-  createNewHealthTopic: (title, picture, history) =>
-    dispatch(createNewHealthTopic(title, picture, history)),
+  createNewHealthTopic: (title, picture, history, documentId) =>
+    dispatch(createNewHealthTopic(title, picture, history, documentId)),
   updateHealthTopic: (healthTopicId, title, picture, history) =>
     dispatch(updateHealthTopic(healthTopicId, title, picture, history)),
 });

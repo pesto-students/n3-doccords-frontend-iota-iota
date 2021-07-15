@@ -25,13 +25,11 @@ const Profiles = ({ fetchAllHealthTopics }) => {
   // }, []);
 
   const handleCreateProfileClick = () => {
-    console.log("add clicked");
     history.push({
       pathname: `/profiles/create`,
     });
   };
   const handleEditProfileClick = () => {
-    console.log("add clicked");
     history.push({
       pathname: `/profiles/edit`,
     });

@@ -38,10 +38,6 @@ const Articles = ({ location, healthTopics, articles, searchedString }) => {
     location.state
   );
 
-  // Redux functions
-  // const selectedHealthTopic = useSelector((state) => state.selectedTopic);
-  // console.log(selectedHealthTopic);
-
   const handleHealthSelection = (selectedItem) => {
     // eslint-disable-next-line no-constant-condition
     if (selectedItem === "All") {
@@ -54,7 +50,6 @@ const Articles = ({ location, healthTopics, articles, searchedString }) => {
       (article) => article.healthTopic === selectedItem.healthTopicId
     );
     if (filteredArticles.length === 0) {
-      console.log("No Relatied articles found");
       setRelatedArticles(filteredArticles);
     } else {
       console.log(filteredArticles);
@@ -71,7 +66,6 @@ const Articles = ({ location, healthTopics, articles, searchedString }) => {
   };
 
   const handleClickOnHV = (article) => {
-    console.log("handleClickOnHV is working");
     history.push({
       pathname: `/article/${article.articleId}`,
       state: article,

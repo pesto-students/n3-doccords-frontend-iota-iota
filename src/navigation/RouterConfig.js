@@ -20,6 +20,7 @@ import AdminteHealthTopic from "pages/admin/adminHealthTopics/adminHealthTopic";
 import AdminHealthTopics from "pages/admin/adminHealthTopics";
 import ArticleList from "pages/articleList";
 import Article from "pages/article/article";
+import Shared from "pages/sharedDocuments";
 import {
   ROOT,
   PROFILES,
@@ -56,6 +57,9 @@ export const RouterConfig = () => {
         </Route>
         <Route path={ARTICLES}>
           <Articles />
+        </Route>
+        <Route path="/shared/:id">
+          <Shared />
         </Route>
         <Route path={UNAUTHORIZED}>
           <UnAuthorized />

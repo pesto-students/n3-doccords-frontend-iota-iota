@@ -1,4 +1,4 @@
 {
-    "editor.cursorStyle": "block",
-    "editor.wordWrap": "on"
+  "editor.cursorStyle": "line",
+  "editor.wordWrap": "on"
 }
