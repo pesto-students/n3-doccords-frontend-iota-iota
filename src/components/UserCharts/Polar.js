@@ -7,7 +7,17 @@ const Polar = (props) => {
   // const { titlesArr, topHealthTopics } = props;
   const labels = props.labels.map((item) => item.title);
   const chartData = Object.values(props.data);
-  const colorArr = ["red", "green", "orange", "blue", "pink"];
+  // const colorArr = ["red", "green", "orange", "blue", "pink"];
+  const colorArr = [
+    "red",
+    "green",
+    "orange",
+    "blue",
+    "pink",
+    "yellow",
+    "purple",
+    "cyan",
+  ];
 
   const data = {
     labels: labels,

@@ -35,6 +35,7 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
   const [title, setTitle] = useState("");
   const [healthTopicId, setHealthTopicId] = useState("");
   const [documentId, setDocumentId] = useState("");
+  const [suggestedTopicId, setSuggestedTopicId] = useState("");
   const [picture, setPicture] = useState("");
   const history = useHistory();
   const location = useLocation();
@@ -46,9 +47,11 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
   });
   useEffect(() => {
     if (location.state.suggestedTopicDetail) {
-      const { title, documentId } = location.state.suggestedTopicDetail;
+      const { title, documentId, suggestedTopicId } =
+        location.state.suggestedTopicDetail;
       setTitle(title);
       setDocumentId(documentId);
+      setSuggestedTopicId(suggestedTopicId);
       return;
     }
     if (location.state) {
@@ -171,7 +174,13 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
       // eslint-disable-next-line no-useless-return
       return;
     } else {
-      createNewHealthTopic(title, uploadedLink, history, documentId);
+      createNewHealthTopic(
+        title,
+        uploadedLink,
+        history,
+        documentId,
+        suggestedTopicId
+      );
     }
   };
   const onUpdate = () => {
@@ -360,8 +369,22 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = (dispatch) => ({
-  createNewHealthTopic: (title, picture, history, documentId) =>
-    dispatch(createNewHealthTopic(title, picture, history, documentId)),
+  createNewHealthTopic: (
+    title,
+    picture,
+    history,
+    documentId,
+    suggestedTopicId
+  ) =>
+    dispatch(
+      createNewHealthTopic(
+        title,
+        picture,
+        history,
+        documentId,
+        suggestedTopicId
+      )
+    ),
   updateHealthTopic: (healthTopicId, title, picture, history) =>
     dispatch(updateHealthTopic(healthTopicId, title, picture, history)),
 });

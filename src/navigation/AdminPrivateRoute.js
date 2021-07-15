@@ -6,6 +6,7 @@ import { Redirect, Route } from "react-router-dom";
 import { useAuth } from "context/AuthContext";
 import { fetchUserDetail } from "apiRequests/user";
 import { UNAUTHORIZED } from "navigation/constants";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 // screen if you're not yet authenticated.
 const AdminPrivateRoute = ({ children, ...rest }) => {
@@ -21,7 +22,18 @@ const AdminPrivateRoute = ({ children, ...rest }) => {
   }, []);
   if (currentUser) {
     if (loading) {
-      return <p>Loading</p>;
+      return (
+        <div
+          style={{
+            marginTop: "3rem",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress color="secondary" />
+        </div>
+      );
     }
     if (userDetail.profileType === "admin") {
       return <Route {...rest} render={() => children} />;

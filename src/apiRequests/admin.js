@@ -29,11 +29,13 @@ export const deleteHealthTopic =
   };
 
 export const createNewHealthTopic =
-  (title, picture, history, documentId) => async (dispatch, getState) => {
+  (title, picture, history, documentId, suggestedTopicId) =>
+  async (dispatch, getState) => {
     const newHealthTopic = await customAxios.post(CREATE_HEALTH_TOPICS_URL, {
       title,
       picture,
       documentId,
+      suggestedTopicId,
     });
     const healthTopicsArray = getState().common.healthTopics;
     if (newHealthTopic.data.success) {
@@ -132,5 +134,15 @@ export const getSuggestedTopics = () => async (dispatch, getState) => {
   const suggestedTopics = await customAxios.get(SUGGESTED_TOPICS_URL);
   if (suggestedTopics.data.success) {
     dispatch(setSuggestedTopics(suggestedTopics.data.data));
+  }
+};
+export const declineSuggestion = (id) => async (dispatch, getState) => {
+  const suggestedTopicId = id;
+
+  const suggestedTopic = await customAxios.put(SUGGESTED_TOPICS_URL, {
+    suggestedTopicId,
+  });
+  if (suggestedTopic.data.success) {
+    dispatch(getSuggestedTopics());
   }
 };

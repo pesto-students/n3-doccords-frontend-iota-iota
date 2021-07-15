@@ -5,7 +5,17 @@ import { Typography, Box } from "@material-ui/core";
 
 const DoughnutChart = (props) => {
   const chartData = Object.values(props.chartdata);
-  const colorArr = ["red", "green", "orange", "blue", "pink"];
+  // const colorArr = ["red", "green", "orange", "blue", "pink"];
+  const colorArr = [
+    "red",
+    "green",
+    "orange",
+    "blue",
+    "pink",
+    "yellow",
+    "purple",
+    "cyan",
+  ];
 
   const data = {
     labels: props.labels,

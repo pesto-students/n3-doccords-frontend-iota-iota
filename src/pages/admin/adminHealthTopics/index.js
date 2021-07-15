@@ -8,7 +8,11 @@ import tableIcons from "components/shared/tableIcons";
 import { Box } from "@material-ui/core";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
-import { deleteHealthTopic, getSuggestedTopics } from "apiRequests/admin";
+import {
+  deleteHealthTopic,
+  getSuggestedTopics,
+  declineSuggestion,
+} from "apiRequests/admin";
 import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
@@ -59,6 +63,7 @@ const AdminHealthTopics = ({
   deleteHealthTopic,
   getSuggestedTopics,
   suggestedTopics,
+  declineSuggestion,
 }) => {
   const classes = useStyles();
   const [rows, setRows] = useState([]);
@@ -123,6 +128,7 @@ const AdminHealthTopics = ({
       state: {
         suggestedTopicDetail: {
           title: suggestedTopic.suggestedTopic,
+          suggestedTopicId: suggestedTopic.suggestedTopicId,
           documentId: suggestedTopic.documentId,
           healthTopicId: "",
           picture: " ",
@@ -130,7 +136,9 @@ const AdminHealthTopics = ({
       },
     });
   };
-  const declineTopic = (suggestedTopic) => {};
+  const declineTopic = (suggestedTopic) => {
+    declineSuggestion(suggestedTopic.suggestedTopicId);
+  };
   const clickedYes = () => {
     deleteHealthTopic(deleteHealthTopicId);
     handleClose();
@@ -274,6 +282,7 @@ const AdminHealthTopics = ({
 AdminHealthTopics.propTypes = {
   fetchAllHealthTopics: PropTypes.func.isRequired,
   getSuggestedTopics: PropTypes.func.isRequired,
+  declineSuggestion: PropTypes.func.isRequired,
   deleteHealthTopic: PropTypes.func,
   healthTopics: PropTypes.array,
   suggestedTopics: PropTypes.array,
@@ -290,6 +299,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchAllHealthTopics: () => dispatch(fetchAllHealthTopics()),
   getSuggestedTopics: () => dispatch(getSuggestedTopics()),
   deleteHealthTopic: (articleId) => dispatch(deleteHealthTopic(articleId)),
+  declineSuggestion: (id) => dispatch(declineSuggestion(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminHealthTopics);

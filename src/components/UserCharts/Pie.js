@@ -8,7 +8,17 @@ const PieChart = (props) => {
   // const { title, chartData, labels } = props;
   const labels = props.labels.map((item) => item.title);
   const chartData = props.chartdata.map((item) => Object.values(item)).flat(1);
-  const colorArr = ["red", "green", "orange", "blue", "pink"];
+  // const colorArr = ["red", "green", "orange", "blue", "pink"];
+  const colorArr = [
+    "red",
+    "green",
+    "orange",
+    "blue",
+    "pink",
+    "yellow",
+    "purple",
+    "cyan",
+  ];
 
   const data = {
     labels: labels,

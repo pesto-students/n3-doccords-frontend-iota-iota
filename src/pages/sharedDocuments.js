@@ -12,13 +12,14 @@ const sharedDocuments = () => {
     fetchSharedDocs(id, dispatch);
   }, [id]);
   return (
-    <div>
+    <div style={{ margin: "2rem", display: "flex", flexDirection: "column" }}>
       {sharedDocs.map((sharedDoc) => (
         <a
           key={sharedDoc.documentId}
           href={sharedDoc.link}
           target="_blank"
           rel="noopener noreferrer"
+          style={{ marginTop: "1rem", fontSize: "1.5rem" }}
         >
           {sharedDoc.name}
         </a>

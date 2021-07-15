@@ -245,14 +245,14 @@ const Table = (props) => {
           selection: true,
         }}
         actions={[
-          {
-            icon: tableIcons.ShareIcon,
-            tooltip: "Share Profile",
-            onClick: (event, rowData) => {
-              calculateSelectedProfilesAndDocs(rowData);
-              setOpen(true);
-            },
-          },
+          // {
+          //   icon: tableIcons.ShareIcon,
+          //   tooltip: "Share Profile",
+          //   onClick: (event, rowData) => {
+          //     calculateSelectedProfilesAndDocs(rowData);
+          //     setOpen(true);
+          //   },
+          // },
           {
             icon: tableIcons.Edit,
             tooltip: isMultipleSelection
