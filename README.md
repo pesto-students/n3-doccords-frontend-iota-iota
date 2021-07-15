@@ -1,6 +1,15 @@
 # Doccords
 
-Users can maintain, analyze and share medical documents.
+Users can maintain, analyze and share medical documents.And educating the user regarding health issues by articles. It is built with React, Redux, JavaScript, and material UI, eslint, Pritter, Firebase, AWS S3.
+
+##  Project Screen Shot(s)
+<!-- ![](public/Dashboard.png)
+![](public/home.png) -->
+<img src="public/home.png" width="300">
+<img src="public/dashboard.png" width="300">
+<img src="public/profiles.png" width="300">
+<img src="public/uploadDoc.png" width="300">
+
 
 ## Getting Started
 These instructions will give you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](https://github.com/Elangodevguy/doccords#deployment) for notes on deploying the project on a live system.
@@ -22,7 +31,7 @@ need to install `Prettier` and `ESLint` as VS code package
 In this section we will tell you step by step process, that will tell you how to get a development environment running
 
 Clone this project repository using
-### `git clone https://github.com/Elangodevguy/doccords.git`
+### `git clone https://github.com/pesto-students/n3-doccords-frontend-iota-iota.git`
 
 after you clone doccords repo, move to the root of the project directory in your terminal
 
@@ -79,4 +88,4 @@ Whenever we `push` something in any of our branch `Circle CI\CD` will get called
 
 but when we `push` something to develop branch it will go one step further and `Circle CI\CD` will proceed with build and will sync our local `build/` folder to AWS S3 static bucket. Once the deployment is done `Circle CI\CD` will notify us in slack with the corresponding status
 
-# [website link](https://d35a2073q06o61.cloudfront.net/)
+# [website link](http://doccords.s3-website.ap-south-1.amazonaws.com)
