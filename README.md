@@ -1,4 +1,15 @@
-# Doccords
+<p align="center">
+<img src="public/apple-touch-icon.png" width="150" align="center">
+  </p>
+<h1 align="center"># Doccords </h1>
+<p align="center"> Users can maintain, analyze and share medical documents.And educating the user regarding health issues by articles.</p>
+
+##  [Demo link](https://d35a2073q06o61.cloudfront.net/)   ,      [Documentation](https://drive.google.com/drive/folders/1fygTnk8m1xy8dbsyii_2nlB5wf-acKeK)     
+
+### Table Content
+ - [Installing](#installing)
+
+
 
 Users can maintain, analyze and share medical documents.
 
