@@ -59,14 +59,6 @@ const UploadAvatar = () => {
         await setIsLoading(false);
         await setIsSuccess(true);
         dispatch(setUploadedImageURL(res.data.fileLocation));
-
-        // Reset to default values after 3 seconds
-        setTimeout(() => {
-          setSelectedFile(null);
-          setPreview(null);
-          setIsSuccess(false);
-          setButtonText("Select your file first");
-        }, 2000);
       }
     } catch (error) {
       setIsLoading(false);
@@ -88,13 +80,7 @@ const UploadAvatar = () => {
       <div className="photo_upload">
         <main style={{ marginTop: "1rem" }}>
           <form
-            onSubmit={(e) => handleFileUpload(e)}
-            // style={{
-            //   display: "flex",
-            //   flexDirection: "column",
-            //   justifyContent: "center",
-            //   alignItems: "center",
-            // }}
+            onSubmit={(e) => handleFileUpload(e)
           >
             <label className="uploader" style={{ width: "15rem" }}>
               <div className="upload-space">

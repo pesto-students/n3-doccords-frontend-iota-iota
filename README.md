@@ -1,9 +1,64 @@
-# Doccords
 
-Users can maintain, analyze and share medical documents.
+<p align="center">
+<img src="public/apple-touch-icon.png" width="150" align="center">
+  </p>
+<h1 align="center"> Doccords </h1>
+<p align="center"> Users can maintain, analyze and share medical documents.And can educate himself regarding health issues by reading articles.</p>
+
+##  [Demo link](http://doccords.s3-website.ap-south-1.amazonaws.com)
+### [Documentation](https://drive.google.com/drive/folders/1fygTnk8m1xy8dbsyii_2nlB5wf-acKeK)  
+
+
+##  Project Screen Shot(s)
+<!-- ![](public/Dashboard.png)
+![](public/home.png) -->
+
+<img src="public/unregisteredUser.gif" width="300">
+<img src="public/registeredUser.gif" width="300">
+<img src="public/admin.gif" width="300">
+
+<img src="public/home.png" width="300">
+<img src="public/dashboard.png" width="300">
+<img src="public/profiles.png" width="300">
+<img src="public/uploadDoc.png" width="300">
+
+
+### Table Content
+  - [Getting Started](#getting-started)
+  - [Build With](#build-with)
+  - [Prerequisites](#prerequisites)
+  - [Installing](#installing)
+  - [Testing](#testing)
+  - [Production](#production-build)
+  - [Deployment](#deployment)
+  - [License](#license)
+  
+
+
 
 ## Getting Started
+  Testing credentials  
+  
+    1. Admin Account
+      - Email: doccords@gmail.com
+      - Password: 123456789qwe$$
+      
+    2. User Account
+      - Email: doccordsuser@gmail.com
+      - Password: 123456789qwe$$
+
 These instructions will give you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](https://github.com/Elangodevguy/doccords#deployment) for notes on deploying the project on a live system.
+
+
+
+## Build With
+  - React JS
+  - Redux
+  - Material UI
+  - ES-lint
+  - Prettier
+  - Firebase
+  - AWS S3
 
 ## Prerequisites
 Requirements for the software and other tools to build, test and push
@@ -22,7 +77,7 @@ need to install `Prettier` and `ESLint` as VS code package
 In this section we will tell you step by step process, that will tell you how to get a development environment running
 
 Clone this project repository using
-### `git clone https://github.com/Elangodevguy/doccords.git`
+### `git clone https://github.com/pesto-students/n3-doccords-frontend-iota-iota.git`
 
 after you clone doccords repo, move to the root of the project directory in your terminal
 
@@ -79,4 +134,8 @@ Whenever we `push` something in any of our branch `Circle CI\CD` will get called
 
 but when we `push` something to develop branch it will go one step further and `Circle CI\CD` will proceed with build and will sync our local `build/` folder to AWS S3 static bucket. Once the deployment is done `Circle CI\CD` will notify us in slack with the corresponding status
 
-# [website link](https://d35a2073q06o61.cloudfront.net/)
+
+## License
+This project is licensed under the MIT License - see the LICENSE.md file for details
+
+# [website link](http://doccords.s3-website.ap-south-1.amazonaws.com)
