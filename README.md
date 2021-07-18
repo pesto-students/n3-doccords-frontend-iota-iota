@@ -138,4 +138,4 @@ but when we `push` something to develop branch it will go one step further and `
 ## License
 This project is licensed under the MIT License - see the LICENSE.md file for details
 
-# [website link](http://doccords.s3-website.ap-south-1.amazonaws.com)
+# [website link](https://d35a2073q06o61.cloudfront.net/)
