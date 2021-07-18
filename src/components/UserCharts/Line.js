@@ -15,18 +15,6 @@ const data = {
   ],
 };
 
-// const options = {
-//   scales: {
-//     yAxes: [
-//       {
-//         ticks: {
-//           beginAtZero: true,
-//         },
-//       },
-//     ],
-//   },
-// };
-
 const LineChart = () => (
   <Box m={1}>
     <Typography variant="h6">Articles Under Family Health Issues</Typography>

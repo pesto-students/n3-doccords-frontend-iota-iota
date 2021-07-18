@@ -35,6 +35,7 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
   const [title, setTitle] = useState("");
   const [healthTopicId, setHealthTopicId] = useState("");
   const [documentId, setDocumentId] = useState("");
+  const [suggestedTopicId, setSuggestedTopicId] = useState("");
   const [picture, setPicture] = useState("");
   const history = useHistory();
   const location = useLocation();
@@ -45,18 +46,21 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
     },
   });
   useEffect(() => {
-    if (location.state.suggestedTopicDetail) {
-      const { title, documentId } = location.state.suggestedTopicDetail;
-      setTitle(title);
-      setDocumentId(documentId);
-      return;
-    }
     if (location.state) {
-      const { title, healthTopicId, picture } = location.state;
-      setTitle(title);
-      setHealthTopicId(healthTopicId);
-      setPicture(picture);
-      dispatch(setUploadedImageURL(picture));
+      if (location.state.type === "suggested") {
+        const { title, documentId, suggestedTopicId } =
+          location.state.suggestedTopicDetail;
+        setTitle(title);
+        setDocumentId(documentId);
+        setSuggestedTopicId(suggestedTopicId);
+      }
+      if (location.state.type === "update") {
+        const { title, healthTopicId, picture } = location.state;
+        setTitle(title);
+        setHealthTopicId(healthTopicId);
+        setPicture(picture);
+        dispatch(setUploadedImageURL(picture));
+      }
     }
   }, []);
   // Handling file selection from input
@@ -102,7 +106,7 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
         ).accessToken;
         const res = await axios({
           method: "post",
-          url: "http://localhost:5001/api/v1/admin/upload/image",
+          url: "https://doccords-api.herokuapp.com/api/v1/admin/upload/image",
           data: fileData,
           headers: {
             "Content-Type": "multipart/form-data",
@@ -112,26 +116,11 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
         await setIsLoading(false);
         await setIsSuccess(true);
         dispatch(setUploadedImageURL(res.data.fileLocation));
-        console.log(res);
-
-        // Reset to default values after 3 seconds
-        // setTimeout(() => {
-        //   setSelectedFile(null);
-        //   setPreview(null);
-        //   setIsSuccess(false);
-        //   setFileName(null);
-        //   setButtonText("Select your file first");
-        // }, 3000);
       }
     } catch (error) {
       setIsLoading(false);
       setIsError(true);
       setFileName(null);
-
-      // setTimeout(() => {
-      //   setIsError(false);
-      //   setButtonText("Select your file first");
-      // }, 3000);
     }
   };
   const deleteUploadedUrl = () => {
@@ -171,7 +160,13 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
       // eslint-disable-next-line no-useless-return
       return;
     } else {
-      createNewHealthTopic(title, uploadedLink, history, documentId);
+      createNewHealthTopic(
+        title,
+        uploadedLink,
+        history,
+        documentId,
+        suggestedTopicId
+      );
     }
   };
   const onUpdate = () => {
@@ -360,8 +355,22 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = (dispatch) => ({
-  createNewHealthTopic: (title, picture, history, documentId) =>
-    dispatch(createNewHealthTopic(title, picture, history, documentId)),
+  createNewHealthTopic: (
+    title,
+    picture,
+    history,
+    documentId,
+    suggestedTopicId
+  ) =>
+    dispatch(
+      createNewHealthTopic(
+        title,
+        picture,
+        history,
+        documentId,
+        suggestedTopicId
+      )
+    ),
   updateHealthTopic: (healthTopicId, title, picture, history) =>
     dispatch(updateHealthTopic(healthTopicId, title, picture, history)),
 });

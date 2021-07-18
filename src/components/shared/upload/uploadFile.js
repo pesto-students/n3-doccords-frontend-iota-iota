@@ -21,7 +21,6 @@ const UploadAvatar = () => {
 
   const onFileSelected = (e) => {
     if (e.target.files[0]) {
-      console.log(URL.createObjectURL(event.target.files[0]));
       setSelectedFile(e.target.files[0]);
       // setFileName(e.target.files[0].name);
       setPreview(URL.createObjectURL(event.target.files[0]));
@@ -50,7 +49,7 @@ const UploadAvatar = () => {
         ).accessToken;
         const res = await axios({
           method: "post",
-          url: "http://localhost:5001/api/v1/users/upload/file",
+          url: "https://doccords-api.herokuapp.com/api/v1/users/upload/file",
           data: fileData,
           headers: {
             "Content-Type": "multipart/form-data",

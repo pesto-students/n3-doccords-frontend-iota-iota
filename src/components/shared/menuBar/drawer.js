@@ -10,13 +10,9 @@ import {
   ListItemText,
   Divider,
 } from "@material-ui/core";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import { useSelector } from "react-redux";
 import {
   ROOT,
-  HEALTH_TOPICS,
-  ARTICLES,
   DASHBOARD,
   PROFILES,
   DOCUMENTS,
@@ -25,6 +21,12 @@ import {
   ADMIN_ARTICLES,
 } from "navigation/constants";
 import { Link } from "react-router-dom";
+import HomeIcon from "@material-ui/icons/Home";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import RecentActorsIcon from "@material-ui/icons/RecentActors";
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import ChromeReaderModeIcon from "@material-ui/icons/ChromeReaderMode";
+import ListAltIcon from "@material-ui/icons/ListAlt";
 
 const styles = () => ({
   list: {
@@ -39,54 +41,51 @@ const navList = {
     {
       name: "Home",
       link: ROOT,
-    },
-    {
-      name: "Health Topics",
-      link: HEALTH_TOPICS,
-    },
-    {
-      name: "Articles",
-      link: ARTICLES,
+      icon: <HomeIcon />,
     },
   ],
   registeredUser: [
     {
       name: "Home",
       link: ROOT,
-    },
-    {
-      name: "Health Topics",
-      link: HEALTH_TOPICS,
-    },
-    {
-      name: "Articles",
-      link: ARTICLES,
+      icon: <HomeIcon />,
     },
     {
       name: "Dasboard",
       link: DASHBOARD,
+      icon: <DashboardIcon />,
     },
     {
       name: "Profiles",
       link: PROFILES,
+      icon: <RecentActorsIcon />,
     },
     {
       name: "Documents",
       link: DOCUMENTS,
+      icon: <AssignmentIcon />,
     },
   ],
   admin: [
     {
+      name: "Home",
+      link: ROOT,
+      icon: <HomeIcon />,
+    },
+    {
       name: "Dasboard",
       link: ADMIN_DASHBOARD,
+      icon: <DashboardIcon />,
     },
     {
       name: "Health Topics",
       link: ADMIN_HEALTH_TOPICS,
+      icon: <ListAltIcon />,
     },
     {
       name: "Articles",
       link: ADMIN_ARTICLES,
+      icon: <ChromeReaderModeIcon />,
     },
   ],
 };
@@ -118,9 +117,7 @@ const DrawerComponent = ({ classes, toggleDrawerHandler, left }) => {
       <List>
         {list.map((item, index) => (
           <ListItem button component={Link} to={item.link} key={index}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
+            <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.name} />
           </ListItem>
         ))}

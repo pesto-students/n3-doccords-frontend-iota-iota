@@ -7,7 +7,7 @@ if (local) {
 }
 
 const customAxios = axios.create({
-  baseURL: "http://localhost:5001/api/v1",
+  baseURL: "https://doccords-api.herokuapp.com/api/v1",
   timeout: 10000,
   headers: {
     Authorization: "Bearer " + token,

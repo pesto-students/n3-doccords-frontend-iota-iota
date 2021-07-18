@@ -23,3 +23,7 @@ export const searchString = (payload) => ({
   type: types.SEARCH_STRING,
   payload,
 });
+export const setNotification = (payload) => ({
+  type: types.SET_NOTIFICATION,
+  payload,
+});

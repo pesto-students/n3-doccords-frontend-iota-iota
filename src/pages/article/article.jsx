@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Box from "@material-ui/core/Box";
-// import Grid from "@material-ui/core/Grid";
-// import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import { Typography, Paper, Grid } from "@material-ui/core";
@@ -13,10 +11,6 @@ import withWidth from "@material-ui/core/withWidth";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-  // grow: {
-  //   display: "flex",
-  //   flexDirection: "col",
-  // },
   sidebarcl: {
     width: "15vw",
   },
@@ -49,7 +43,6 @@ const Article = ({ location }) => {
   const bgImage = article.picture;
   const history = useHistory();
 
-  console.log(healthTopicList);
   useEffect(() => {
     if (articlesList !== undefined) {
       setRelatedArticles(

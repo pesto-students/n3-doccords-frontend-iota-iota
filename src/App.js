@@ -17,43 +17,10 @@ import Nav from "components/shared/menuBar/nav";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import Footer from "components/footer/Footer";
-// import Snackbar from "@material-ui/core/Snackbar";
-// import MuiAlert from "@material-ui/lab/Alert";
 // styles
 import "./App.css";
 import { getToken, onMessageListener } from "firebaseSetup";
-// import { makeStyles } from "@material-ui/core/styles";
-// import CssBaseline from "@material-ui/core/CssBaseline";
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     display: "flex",
-//     maxWidth: "100vw",
-//     overflowX: "hidden",
-//   },
-//   menuButton: {
-//     marginRight: theme.spacing(0),
-//   },
-
-//   sectonMDandUP: {
-//     display: "none",
-//     [theme.breakpoints.down("sm")]: {
-//       display: "block",
-//     },
-//   },
-//   content: {
-//     flexGrow: 1,
-//     padding: theme.spacing(1),
-//   },
-//   toolbar: {
-//     display: "flex",
-//     alignItems: "start",
-//     justifyContent: "flex-start",
-//     padding: theme.spacing(0, 1),
-//     // necessary for content to be below app bar
-//     ...theme.mixins.toolbar,
-//   },
-// }));
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -71,23 +38,15 @@ function App() {
         title: payload.notification.title,
         body: payload.notification.body,
       });
-      console.log(payload);
     })
     .catch((err) => console.log("failed: ", err));
-  // const handleThemeChange = () => {
-  //   setDarkState(!darkState);
-  //   console.log("theme=", darkState ? "dark" : "light");
-  // };
+
   return (
     <>
       <div>
         {/* <CssBaseline /> */}
         <Provider store={store}>
           <ThemeProvider theme={darkState ? dark() : light()}>
-            {/* <ThemeSwitch
-              darkState={darkState}
-              handleThemeChange={handleThemeChange}
-            /> */}
             <Router>
               <AuthProvider>
                 <Nav />

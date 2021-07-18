@@ -8,7 +8,7 @@ import {
   setProfiles,
   setSharedDoc,
 } from "redux/actions/user";
-import { setUploadedImageURL } from "redux/actions/common";
+import { setUploadedImageURL, setNotification } from "redux/actions/common";
 import { fetchTokenFromServer, currentUser } from "context/AuthContext";
 import customAxios from "apiRequests/customAxios";
 import {
@@ -26,7 +26,7 @@ export const fetchUserDetail = async (dispatch) => {
   );
 
   const userDetail = await axios.post(
-    "http://localhost:5001/api/v1/users",
+    "https://doccords-api.herokuapp.com/api/v1/users",
     {
       profileName: currentUser().displayName,
       email: currentUser().email,
@@ -74,6 +74,12 @@ export const createNewProfile =
     });
     if (createdUser.data.success) {
       dispatch(setUploadedImageURL(""));
+      dispatch(
+        setNotification({
+          status: true,
+          body: "New profile got created successfully",
+        })
+      );
       history.push("/profiles");
     }
   };
@@ -146,6 +152,12 @@ export const updateProfile =
     );
     if (createdUser.data.success) {
       dispatch(setUploadedImageURL(""));
+      dispatch(
+        setNotification({
+          status: true,
+          body: "Profile got updated successfully",
+        })
+      );
       history.push("/profiles");
     }
   };
@@ -162,6 +174,12 @@ export const createDoc = (doc) => async (dispatch, getState) => {
   const createdDoc = await customAxios.post(USER_DOCUMENTS_URL, data);
   if (createdDoc.data.success) {
     dispatch(fetchAllProfilesAndDocuments());
+    dispatch(
+      setNotification({
+        status: true,
+        body: "Document got created successfully",
+      })
+    );
   }
 };
 
@@ -173,6 +191,12 @@ export const shareDocument = (data) => async (dispatch, getState) => {
   });
   if (shareDoc.data.success) {
     dispatch(fetchAllProfilesAndDocuments());
+    dispatch(
+      setNotification({
+        status: true,
+        body: "Document got shared successfully",
+      })
+    );
   }
 };
 export const updateDocAccess = (data) => async (dispatch, getState) => {
@@ -183,6 +207,12 @@ export const updateDocAccess = (data) => async (dispatch, getState) => {
   });
   if (docAccess.data.success) {
     dispatch(fetchAllProfilesAndDocuments());
+    dispatch(
+      setNotification({
+        status: true,
+        body: "Document access got updated successfully",
+      })
+    );
   }
 };
 
@@ -194,11 +224,20 @@ export const deleteDocuments = (documentIds) => async (dispatch, getState) => {
   });
   if (deletedDocs.data.success) {
     dispatch(fetchAllProfilesAndDocuments());
+    dispatch(
+      setNotification({
+        status: true,
+        body: "Document got deleted successfully",
+      })
+    );
   }
 };
 
-export const fetchSharedDocs = async (id, dispatch) => {
-  const sharedDocs = await customAxios.get(`${USER_DOCUMENTS_URL}/share/${id}`);
+export const fetchSharedDocs = async (id, email, dispatch) => {
+  const sharedDocs = await customAxios.post(`/share`, {
+    shareId: id,
+    shareEmail: email,
+  });
   if (sharedDocs.data.success) {
     dispatch(setSharedDoc(sharedDocs.data.documents));
   }

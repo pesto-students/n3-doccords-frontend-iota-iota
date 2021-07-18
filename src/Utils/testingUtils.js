@@ -8,14 +8,10 @@ export const findByTestAtrr = (component, attr) => {
 };
 
 export const testStore = (initialState) => {
-  //   const createStoreWithMiddleware = applyMiddleware(...middlewares)(
-  //     createStore
-  //   );
   const store = createStore(
     rootReducer,
     initialState,
     compose(applyMiddleware(...middlewares))
   );
-  //   return createStoreWithMiddleware(rootReducer, initialState);
   return store;
 };
