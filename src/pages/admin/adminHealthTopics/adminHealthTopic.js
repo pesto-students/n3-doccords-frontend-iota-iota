@@ -46,20 +46,21 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
     },
   });
   useEffect(() => {
-    if (location.state.suggestedTopicDetail) {
-      const { title, documentId, suggestedTopicId } =
-        location.state.suggestedTopicDetail;
-      setTitle(title);
-      setDocumentId(documentId);
-      setSuggestedTopicId(suggestedTopicId);
-      return;
-    }
     if (location.state) {
-      const { title, healthTopicId, picture } = location.state;
-      setTitle(title);
-      setHealthTopicId(healthTopicId);
-      setPicture(picture);
-      dispatch(setUploadedImageURL(picture));
+      if (location.state.type === "suggested") {
+        const { title, documentId, suggestedTopicId } =
+          location.state.suggestedTopicDetail;
+        setTitle(title);
+        setDocumentId(documentId);
+        setSuggestedTopicId(suggestedTopicId);
+      }
+      if (location.state.type === "update") {
+        const { title, healthTopicId, picture } = location.state;
+        setTitle(title);
+        setHealthTopicId(healthTopicId);
+        setPicture(picture);
+        dispatch(setUploadedImageURL(picture));
+      }
     }
   }, []);
   // Handling file selection from input

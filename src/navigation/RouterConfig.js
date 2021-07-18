@@ -1,9 +1,13 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import Home from "pages/home";
 import Login from "pages/login";
 import Profiles from "pages/users/profiles";
 import CreateProfiles from "pages/users/profiles/createProfile";
+
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 // import EditProfiles from "pages/Profile/editProfile";
 import Documents from "pages/users/documents";
 import UserDashboard from "pages/users/dashboard";
@@ -40,10 +44,27 @@ import {
   TOPIC_WITH_ID,
   ARTICLE_WITH_ID,
 } from "navigation/constants";
+import { setNotification } from "redux/actions/common";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 export const RouterConfig = () => {
+  const dispatch = useDispatch();
+  const notification = useSelector((state) => state.common.notification);
+
   return (
     <div>
+      <Snackbar
+        open={notification.status}
+        autoHideDuration={6000}
+        onClose={() => {
+          dispatch(setNotification({ status: false, body: "" }));
+        }}
+      >
+        <Alert severity="success">{notification.body}</Alert>
+      </Snackbar>
       <Switch>
         {/* List all public routes here */}
         <Route exact path={ROOT} component={Home} />

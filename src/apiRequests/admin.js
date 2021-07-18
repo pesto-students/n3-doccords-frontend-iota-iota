@@ -10,6 +10,7 @@ import {
   setAllHealthTopics,
   setUploadedImageURL,
   setAllArticles,
+  setNotification,
 } from "redux/actions/common";
 import { setSuggestedTopics } from "redux/actions/user";
 
@@ -23,6 +24,12 @@ export const deleteHealthTopic =
         (healthTopic) => healthTopic.healthTopicId !== healthTopicId
       );
       dispatch(setAllHealthTopics(removedArr));
+      dispatch(
+        setNotification({
+          status: true,
+          body: "Health topic got deleted successfully",
+        })
+      );
     } else {
       console.log(deleteHealthTopic.data);
     }
@@ -42,6 +49,12 @@ export const createNewHealthTopic =
       healthTopicsArray.unshift(newHealthTopic.data.data);
       dispatch(setAllHealthTopics(healthTopicsArray));
       dispatch(setUploadedImageURL(""));
+      dispatch(
+        setNotification({
+          status: true,
+          body: "Health topic got added successfully",
+        })
+      );
       history.push("/admin/healthTopics");
     }
   };
@@ -66,6 +79,12 @@ export const updateHealthTopic =
       });
       dispatch(setAllHealthTopics(updatedHealthTopics));
       dispatch(setUploadedImageURL(""));
+      dispatch(
+        setNotification({
+          status: true,
+          body: "Health topic got updated successfully",
+        })
+      );
       history.push("/admin/healthTopics");
     }
   };
@@ -84,6 +103,12 @@ export const createNewArticle =
       articlesArray.unshift(createdArticle.data.data);
       dispatch(setAllArticles(articlesArray));
       dispatch(setUploadedImageURL(""));
+      dispatch(
+        setNotification({
+          status: true,
+          body: "Article got added successfully",
+        })
+      );
       history.push("/admin/articles");
     }
   };
@@ -114,6 +139,12 @@ export const updateArticle =
       });
       dispatch(setAllArticles(updatedArticles));
       dispatch(setUploadedImageURL(""));
+      dispatch(
+        setNotification({
+          status: true,
+          body: "Article got updated successfully",
+        })
+      );
       history.push("/admin/articles");
     }
   };
@@ -126,6 +157,12 @@ export const deleteArticle = (articleId) => async (dispatch, getState) => {
       (article) => article.articleId !== articleId
     );
     dispatch(setAllArticles(removedArr));
+    dispatch(
+      setNotification({
+        status: true,
+        body: "Article got deleted successfully",
+      })
+    );
   } else {
     console.log(deleteHealthTopic.data);
   }

@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom";
 import { setUpSearchBarLocation } from "../../redux/actions/common";
 import { makeStyles } from "@material-ui/core/styles";
 import MyCarousel from "components/shared/carousel/Carousel";
+import coding from "assets/images/coding.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -114,7 +115,20 @@ const Articles = ({ location, healthTopics, articles, searchedString }) => {
           handleClick={handleClickOnHV}
         />
       ) : (
-        <h4>Sorry currently we dont have articles under selected category.</h4>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h4>
+            Sorry currently we dont have articles under selected category. Our
+            team is working hard to give you the articles you need.
+          </h4>
+          <img src={coding} style={{ width: "50%" }} />
+        </div>
       )}
     </Container>
   );

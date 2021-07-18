@@ -6,6 +6,10 @@ const initialState = {
   uploadedLink: "",
   searchLocationIsAtHome: null,
   searchedString: "",
+  notification: {
+    status: false,
+    body: "",
+  },
 };
 
 export const common = (state = initialState, action) => {
@@ -35,7 +39,11 @@ export const common = (state = initialState, action) => {
         ...state,
         searchedString: action.payload,
       };
-
+    case types.SET_NOTIFICATION:
+      return {
+        ...state,
+        notification: action.payload,
+      };
     default:
       return state;
   }

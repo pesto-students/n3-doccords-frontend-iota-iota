@@ -99,6 +99,7 @@ const AdminHealthTopics = ({
     history.push({
       pathname: "/admin/healthTopic",
       state: {
+        type: "update",
         title,
         healthTopicId,
         picture,
@@ -126,6 +127,7 @@ const AdminHealthTopics = ({
     history.push({
       pathname: "/admin/healthTopic",
       state: {
+        type: "suggested",
         suggestedTopicDetail: {
           title: suggestedTopic.suggestedTopic,
           suggestedTopicId: suggestedTopic.suggestedTopicId,
