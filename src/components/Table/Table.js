@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     width: 400,
     backgroundColor: theme.palette.background.paper,
-    // border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     borderRadius: "2%",
@@ -181,12 +180,6 @@ const Table = (props) => {
     deleteAllProfilesAndDocuments(profileIds, docIds, history);
   };
 
-  // const handlADDClick () => {
-
-  // }
-  // const handlDeleteClick () => {
-
-  // }
   const handlEditClick = (event, rowsData) => {
     const filtered = profiles.filter(
       (profile) => rowsData[0].profileId === profile.profileId
@@ -198,9 +191,6 @@ const Table = (props) => {
     });
   };
 
-  // const handlNameClick () => {
-
-  // }
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <p id="simple-modal-profiles">
@@ -245,14 +235,6 @@ const Table = (props) => {
           selection: true,
         }}
         actions={[
-          // {
-          //   icon: tableIcons.ShareIcon,
-          //   tooltip: "Share Profile",
-          //   onClick: (event, rowData) => {
-          //     calculateSelectedProfilesAndDocs(rowData);
-          //     setOpen(true);
-          //   },
-          // },
           {
             icon: tableIcons.Edit,
             tooltip: isMultipleSelection

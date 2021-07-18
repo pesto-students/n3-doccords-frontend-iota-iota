@@ -264,7 +264,6 @@ const Documents = ({
   };
   const onShareClick = () => {
     if (email.length > 0 && validateEmail(email)) {
-      console.log(selectedData);
       const documentIds = selectedData.map((document) => document.documentId);
       shareDocument({ documentIds, email, type: "add" });
       handleClose();
@@ -293,7 +292,6 @@ const Documents = ({
     setModalType("");
   };
   const body = () => {
-    console.log("selecteddddddddd", selectedData);
     if (selectedData.length > 0 && modalType === "share") {
       return (
         <div style={modalStyle} className={classes.paper}>
@@ -418,10 +416,6 @@ const Documents = ({
     }
     return <div>none</div>;
   };
-  console.log(
-    "++++",
-    !(Object.keys(revokeData).length === 0 && revokeData.constructor === Object)
-  );
   return (
     <>
       <Button
@@ -471,7 +465,6 @@ const Documents = ({
               </InputLabel>
               <Select
                 labelId="simple-select-outlined-label"
-                // id="topic"
                 inputProps={{
                   name: "profile",
                   id: "profile",
@@ -503,7 +496,6 @@ const Documents = ({
               </InputLabel>
               <Select
                 labelId="simple-select-outlined-label"
-                // id="topic"
                 inputProps={{
                   name: "topic",
                   id: "topic",

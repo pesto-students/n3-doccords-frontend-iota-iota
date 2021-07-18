@@ -33,24 +33,18 @@ const MyCarousel = (props) => {
         draggable={true}
         showDots={false}
         responsive={responsive}
-        ssr={true} // means to render carousel on server-side.
+        ssr={true}
         infinite={true}
-        // autoPlay={props.deviceType !== "mobile"}
         autoPlaySpeed={1000}
         keyBoardControl={true}
         customTransition="all .5"
         transitionDuration={500}
         containerClass="carousel-container"
-        // removeArrowOnDeviceType={["tablet", "mobile"]}
-        // deviceType={this.props.deviceType}
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-100-px"
       >
         {props.data.map((item, index) => {
           return (
-            // <div key={index} onClick={(e) => console.log(item.title)}>
-            //   {item.title}
-            // </div>
             <GridListTile
               key={index}
               style={{ maxWidth: "500px", height: "300px", padding: "5px" }}

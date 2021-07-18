@@ -3,10 +3,6 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
-// import ListSubheader from "@material-ui/core/ListSubheader";
-// import IconButton from "@material-ui/core/IconButton";
-// import InfoIcon from "@material-ui/icons/Info";
-// import tileData from './tileData';
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 // import { useHistory } from "react-router-dom";
@@ -28,24 +24,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
- * const tileData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
- */
-
 // eslint-disable-next-line react/prop-types
 const VerticalGridList = ({ healthTopics, handleClick }) => {
   const classes = useStyles();
@@ -64,13 +42,7 @@ const VerticalGridList = ({ healthTopics, handleClick }) => {
         {healthTopics.map((topic) => (
           <GridListTile
             key={topic.healthTopicId}
-            onClick={
-              () => handleClick(topic)
-              // history.push({
-              //   pathname: `/healthTopic/${topic.healthTopicId}`,
-              //   state: topic,
-              // })
-            }
+            onClick={() => handleClick(topic)}
           >
             <img src={topic.picture} alt={topic.title} />
             <GridListTileBar title={topic.title} />

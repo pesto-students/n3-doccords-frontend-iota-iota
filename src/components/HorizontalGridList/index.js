@@ -38,23 +38,10 @@ const HorizontalGridList = ({ articles, handleClick }) => {
         {articles.map((article) => (
           <GridListTile
             key={article.articleId}
-            onClick={
-              () => handleClick(article)
-              // history.push({
-              //   pathname: `/article/${article.articleId}`,
-              //   state: article,
-              // })
-            }
+            onClick={() => handleClick(article)}
           >
             <img src={article.picture} alt={article.title} />
-            <GridListTileBar
-              title={article.title}
-              // actionIcon={
-              //   <IconButton aria-label={`star ${tile.title}`}>
-              //     <StarBorderIcon className={classes.title} />
-              //   </IconButton>
-              // }
-            />
+            <GridListTileBar title={article.title} />
           </GridListTile>
         ))}
       </GridList>

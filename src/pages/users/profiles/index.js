@@ -19,11 +19,6 @@ const Profiles = ({ fetchAllHealthTopics }) => {
   const classes = useStyles();
   const history = useHistory();
 
-  // useEffect(() => {
-  //   // fetch health Topics
-  //   fetchAllHealthTopics();
-  // }, []);
-
   const handleCreateProfileClick = () => {
     history.push({
       pathname: `/profiles/create`,

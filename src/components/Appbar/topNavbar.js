@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-// import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 
@@ -11,10 +10,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import SwipeableDrawer from "./SwipeableDrawer";
 import { useLocation } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
-  grow: {
-    // flexGrow: 1,
-  },
-
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -54,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -78,18 +72,7 @@ const useStyles = makeStyles((theme) => ({
 
 const TopNavbar = (props) => {
   const classes = useStyles();
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-  // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [isSearchBar, setIsSearchBar] = React.useState(true);
-  // const [isLogin, setIsLogin] = useState(false);
-  // const [searchVisible, setSearchVisible] = React.useState(true);
-
-  // const handleLogin = () => {
-  //   setIsLogin(true);
-  // };
-
-  // const isMenuOpen = Boolean(anchorEl);
-  // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const titles = {
     "/": "Search health topics",
     articles: "Search Articles",

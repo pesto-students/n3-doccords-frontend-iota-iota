@@ -79,7 +79,6 @@ const CreateProfile = ({
         gender,
         picture,
       } = location.state;
-      console.log("<<Inside", relationshipId.toString());
       setProfileId(profileId);
       setProfileName(profileName);
       setRelationshipId(relationshipId.toString());
@@ -101,11 +100,6 @@ const CreateProfile = ({
     }));
     return healthTopicsArr;
   };
-  // useEffect(() => {
-  //   fetchAllHealthTopics();
-  //   setGender(genderItems[0].id);
-  //   setRelationshipId(getRelationshipCollection()[0].id);
-  // }, []);
   useEffect(() => {
     if (healthTopics.length > 0) {
       setHealthTopicsList(generateHealthTopics(healthTopics));
@@ -197,7 +191,6 @@ const CreateProfile = ({
       setGender(e.target.value);
     }
   };
-  console.log("<<<Relation>>", relationshipId);
   return (
     <>
       <Button

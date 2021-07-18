@@ -5,10 +5,8 @@ import Home from "pages/home";
 import Login from "pages/login";
 import Profiles from "pages/users/profiles";
 import CreateProfiles from "pages/users/profiles/createProfile";
-
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
-// import EditProfiles from "pages/Profile/editProfile";
 import Documents from "pages/users/documents";
 import UserDashboard from "pages/users/dashboard";
 import UnAuthorized from "pages/unauthorized";

@@ -10,8 +10,6 @@ import {
   ListItemText,
   Divider,
 } from "@material-ui/core";
-// import InboxIcon from "@material-ui/icons/MoveToInbox";
-// import MailIcon from "@material-ui/icons/Mail";
 import { useSelector } from "react-redux";
 import {
   ROOT,

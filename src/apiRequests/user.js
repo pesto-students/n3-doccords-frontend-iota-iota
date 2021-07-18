@@ -26,7 +26,7 @@ export const fetchUserDetail = async (dispatch) => {
   );
 
   const userDetail = await axios.post(
-    "http://localhost:5001/api/v1/users",
+    "https://doccords-api.herokuapp.com/api/v1/users",
     {
       profileName: currentUser().displayName,
       email: currentUser().email,
@@ -234,7 +234,6 @@ export const deleteDocuments = (documentIds) => async (dispatch, getState) => {
 };
 
 export const fetchSharedDocs = async (id, email, dispatch) => {
-  console.log(id, email);
   const sharedDocs = await customAxios.post(`/share`, {
     shareId: id,
     shareEmail: email,

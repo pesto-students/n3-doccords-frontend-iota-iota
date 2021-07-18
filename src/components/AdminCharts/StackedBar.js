@@ -23,24 +23,6 @@ const data = {
   ],
 };
 
-// const options = {
-//   scales: {
-//     yAxes: [
-//       {
-//         stacked: true,
-//         ticks: {
-//           beginAtZero: true,
-//         },
-//       },
-//     ],
-//     xAxes: [
-//       {
-//         stacked: true,
-//       },
-//     ],
-//   },
-// };
-
 const StackedBar = () => (
   <Box m={1}>
     <Typography variant="h6">Monthly Document Status </Typography>

@@ -1,20 +1,12 @@
 import React from "react";
-// import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
-// import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
-// import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import menuData from "../Menu/menuData";
 import { Link } from "react-router-dom";
-// import HomeIcon from "@material-ui/icons/Home";
-// import DashboardIcon from "@material-ui/icons/Poll";
-// import CategoryIcon from "@material-ui/icons/Category";
-// import ArticleIcon from "@material-ui/icons/Create";
-// import LogoutIcon from "@material-ui/icons/ExitToApp";
 
 const useStyles = makeStyles({
   list: {

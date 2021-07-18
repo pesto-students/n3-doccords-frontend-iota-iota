@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from "react";
 import VerticalGridList from "../../components/verticalGridList";
-// import HorizontalGridList from "../../components/HorizontalGridList";
-// import DropDown from "components/DropDown/DropDown";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import MyAutoComplete from "../../components/autoComplete/AutoComplete";
@@ -19,14 +17,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const optionList = [
-//   { title: "Cancer" },
-//   { title: "Sugar" },
-//   { title: "Blood Pressure" },
-//   { title: "Covid-19" },
-//   { title: "ENT" },
-// ];
-
 const Articles = ({ location, healthTopics, articles, searchedString }) => {
   const classes = useStyles();
   const history = useHistory();
@@ -42,7 +32,6 @@ const Articles = ({ location, healthTopics, articles, searchedString }) => {
   const handleHealthSelection = (selectedItem) => {
     // eslint-disable-next-line no-constant-condition
     if (selectedItem === "All") {
-      console.log("item not found Error");
       setRelatedArticles(articles);
       return;
     }
@@ -53,7 +42,6 @@ const Articles = ({ location, healthTopics, articles, searchedString }) => {
     if (filteredArticles.length === 0) {
       setRelatedArticles(filteredArticles);
     } else {
-      console.log(filteredArticles);
       setRelatedArticles(filteredArticles);
     }
     setSelectedHealthTopic(selectedItem);
@@ -72,10 +60,6 @@ const Articles = ({ location, healthTopics, articles, searchedString }) => {
       state: article,
     });
   };
-  // const optionList = healthTopics.map((topic) => {
-  //   return topic.title;
-  // });
-  // console.log(optionList);
 
   useEffect(() => {
     fileterArticlesBySearch();

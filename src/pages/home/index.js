@@ -7,20 +7,12 @@ import Paper from "@material-ui/core/Paper";
 import { fetchHealthTopicsAndArticles } from "apiRequests/home";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-// import { setUpSearchBarLocation } from "../../redux/actions/common";
 import { setUpSearchBarLocation } from "redux/actions/common";
 import MyCarousel from "components/shared/carousel/Carousel";
-
-// import HealthTopic from "../../components/CardContainer/CardContainer";
-// import VerticalGridList from "../../components/verticalGridList";
-// import HorizontalGridList from "../../components/HorizontalGridList";
 
 const VerticalGridList = React.lazy(() =>
   import("components/verticalGridList")
 );
-// const HorizontalGridList = React.lazy(() =>
-//   import("../../components/HorizontalGridList")
-// );
 
 const useStyles = makeStyles((theme) => ({
   root: {

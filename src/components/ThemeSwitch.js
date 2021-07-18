@@ -7,13 +7,7 @@ export const ThemeSwitch = ({ darkState, handleThemeChange }) => {
   return (
     <div>
       <Switch checked={darkState} onChange={handleThemeChange} />
-      <Button
-        variant="contained"
-        color="primary"
-        // onClick={() => {
-        //   console.log("Btn clicked!");
-        // }}
-      >
+      <Button variant="contained" color="primary">
         Theme Test
       </Button>
     </div>

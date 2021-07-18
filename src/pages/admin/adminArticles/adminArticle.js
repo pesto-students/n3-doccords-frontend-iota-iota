@@ -118,9 +118,6 @@ const AdminArticle = ({
       if (selectedFile !== "") {
         // Creating a FormData object
         const fileData = new FormData();
-
-        // Adding the 'image' field and the selected file as value to our FormData object
-        // Changing file name to make it unique and avoid potential later overrides
         fileData.set(
           "image",
           selectedFile,
@@ -131,7 +128,7 @@ const AdminArticle = ({
         ).accessToken;
         const res = await axios({
           method: "post",
-          url: "http://localhost:5001/api/v1/admin/upload/image",
+          url: "https://doccords-api.herokuapp.com/api/v1/admin/upload/image",
           data: fileData,
           headers: {
             "Content-Type": "multipart/form-data",
@@ -179,7 +176,6 @@ const AdminArticle = ({
           },
         });
       } else {
-        console.log(error);
         createNewArticle(
           title,
           description,
@@ -212,7 +208,6 @@ const AdminArticle = ({
           },
         });
       } else {
-        console.log(error);
         updateArticle(
           articleId,
           title,
@@ -399,7 +394,6 @@ const AdminArticle = ({
             )}
           </div>
           <div style={{ marginTop: "2rem" }}>
-            {console.log("inside render", descRef.current)}
             <CKEditor
               config={{
                 placeholder: "Please enter your description here",

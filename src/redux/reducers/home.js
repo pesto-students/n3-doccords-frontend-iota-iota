@@ -27,28 +27,7 @@ export const home = (state = initialState, action) => {
         error: action.payload,
         pending: false,
       };
-    // case types.FETCH_ALL_ARTICLES_SUCCESS:
-    //   return {
-    //     ...state,
-    //     articles: action.payload,
-    //     pending: false,
-    //   };
-    // case types.FETCH_ALL_ARTICLES_PENDING:
-    //   return {
-    //     ...state,
-    //     pending: true,
-    //   };
-    // case types.FETCH_ALL_ARTICLES_ERROR:
-    //   return {
-    //     ...state,
-    //     error: action.payload,
-    //     pending: false,
-    //   };
 
-    // case types.FETCH_ARTICLES_UNDER_HEALTH_TOPIC_SUCCESS:
-    //   return {
-    //     ...state,
-    //   };
     default:
       return state;
   }
