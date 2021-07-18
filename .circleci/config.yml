@@ -53,7 +53,7 @@ workflows:
 version: 2.1
 orbs:
   node: circleci/node@4.1
-  aws-s3: circleci/aws-s3@1.0.11
+  aws-s3: circleci/aws-s3@2.0.0
   slack: circleci/slack@4.1
 jobs:
   build:
@@ -90,8 +90,6 @@ jobs:
           arguments: |
             --acl public-read \
             --cache-control "max-age=86400"
-          overwrite: true
-
       - slack/notify:
           event: pass
           template: success_tagged_deploy_1
