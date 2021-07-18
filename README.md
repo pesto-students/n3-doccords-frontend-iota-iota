@@ -56,7 +56,7 @@ These instructions will give you a copy of the project up and running on your lo
   - Redux
   - Material UI
   - ES-lint
-  - Pritter
+  - Prettier
   - Firebase
   - AWS S3
 
