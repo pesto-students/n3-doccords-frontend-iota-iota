@@ -5,7 +5,7 @@
 <h1 align="center"> Doccords </h1>
 <p align="center"> Users can maintain, analyze and share medical documents.And can educate himself regarding health issues by reading articles.</p>
 
-##  [Demo link](http://doccords.s3-website.ap-south-1.amazonaws.com)
+##  [Demo link](https://d35a2073q06o61.cloudfront.net/)
 ### [Documentation](https://drive.google.com/drive/folders/1fygTnk8m1xy8dbsyii_2nlB5wf-acKeK)  
 
 
