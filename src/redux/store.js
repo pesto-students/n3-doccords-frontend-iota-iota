@@ -1,6 +1,6 @@
 import { applyMiddleware, compose, createStore } from "redux";
 import thunk from "redux-thunk";
-import logger from "redux-logger";
+// import logger from "redux-logger";
 import { rootReducer } from "redux/reducers";
 
 // devtools for debugging in dev environment.
@@ -11,7 +11,7 @@ const devTools =
       window.__REDUX_DEVTOOLS_EXTENSION__()
     : (a) => a;
 
-export const middlewares = [thunk, logger];
+export const middlewares = [thunk];
 
 export const store = createStore(
   rootReducer,
